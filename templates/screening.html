@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+            <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+                  <h4 class="text-center">Druglikeness Screening</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-light mt-3 p-1 shadow-sm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mt-3">
+                   <h5>Molecular Weight:</h5>
+                   <div class="form-group">
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="mw" id="mw1" value="0" class="form-check-input"><200</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="mw" id="mw2" value="200" class="form-check-input" checked="checked">200-500</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="mw" id="mw3" value="500" class="form-check-input">500-800</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="mw" id="mw4" value="800" class="form-check-input">800-1000</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="mw" id="mw5" value="1000" class="form-check-input">>1000</label>
+                    </div>
+                   </div>
+                  </div><hr>
+              </div>
+              <div class="col-md-6">
+                <div class="mt-3">
+                   <h5>Topological Polar Surface Area:</h5>
+                   <div class="form-group">
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="tpsa" value="0" class="form-check-input">0-25</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="tpsa" value="25" class="form-check-input" checked="checked">25-50</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="tpsa" value="50" class="form-check-input">50-75</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="tpsa" value="75" class="form-check-input">75-100</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="tpsa" value="100" class="form-check-input">>100</label>
+                    </div>
+                   </div>
+                  </div><hr>
+              </div>
+            </div>
+            <div class ="row">
+              <div class="col-md-6">
+                <div class="mt-3">
+                   <h5>Hydrogen Bond Donors:</h5>
+                   <div class="form-group">
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="hbd" value="0" class="form-check-input">0</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="hbd" value="1" class="form-check-input" checked="checked">1-5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="hbd" value="6" class="form-check-input">6-10</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="hbd" value="10" class="form-check-input">>10</label>
+                    </div>
+                   </div>
+                  </div><hr>
+              </div>
+              <div class="col-md-6">
+                <div class="mt-3">
+                   <h5>Hydrogen Bond Acceptor:</h5>
+                   <div class="form-group">
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="hba" value="0" class="form-check-input">0</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="hba" value="1" class="form-check-input" checked="checked">1-5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="hba" value="6" class="form-check-input">6-10</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="hba" value="10" class="form-check-input">>10</label>
+                    </div>
+                   </div>
+                  </div><hr>
+              </div>
+            </div>
+            <div class ="row">
+              <div class="col-md-6">
+                <div class="mt-3">
+                   <h5>Rotatable Bonds:</h5>
+                   <div class="form-group">
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="rbs" value="0" class="form-check-input">0</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="rbs" value="1" class="form-check-input" checked="checked">1-5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="rbs" value="6" class="form-check-input">6-10</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="rbs" value="10" class="form-check-input">>10</label>
+                    </div>
+                   </div>
+                  </div><hr>
+              </div>
+              <div class="col-md-6">
+                <div class="mt-3">
+                   <h5>AlogP:</h5>
+                   <div class="form-group">
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="alogp" value="0" class="form-check-input"><=0</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="alogp" value="2" class="form-check-input" checked="checked">0-2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="alogp" value="4" class="form-check-input">2-4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="alogp" value="5" class="form-check-input">4-5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="alogp" value="6" class="form-check-input">>5</label>
+                    </div>
+                   </div>
+                  </div><hr>
+              </div>
+            </div>
+            <div class ="row">
+              <div class="col-md-6">
+                <div class="mt-3">
+                   <h5 id="NAFLDTargets">Associated NAFLD Targets <a data-bs-toggle="tooltip" title="The number of NAFLD targets associated with a bioactive compound."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a>:</h5>
+                   <div class="form-group" id="ant">
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="ant" value="NAFLDTargets=1" class="form-check-input">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="ant" value="NAFLDTargets=2" class="form-check-input" checked="checked">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="ant" value="NAFLDTargets=3" class="form-check-input">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="ant" value="NAFLDTargets=4" class="form-check-input">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="ant" value="NAFLDTargets=5" class="form-check-input">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                     <label class="form-check-label"><input type="radio" name="ant" value="NAFLDTargets>5" class="form-check-input">>5</label>
+                    </div>
+                   </div>
+                  </div><hr>
+              </div>
+              <div class="col-md-6">
+                <div class="mt-3">
+                    <h5>QED Weighted:</h5>
+                    <div class="qed">>0.5</div>
+                   <input name="qed" type="range" class="form-range" min="0" max="0.95" step="0.05" value="0.5" id="qed">
+                  </div><hr>
+              </div>
+            </div>
+            <div class ="row">
+              <div class="col-md-6">
+                <div class="row">
+                    <div class="col-6">
+                      <h5>Search Field:</h5>
+                      <select name="field" id="field" class="form-select"><option>Bioactive Compounds</option><option>Natural Products</option></select>
+                    </div>
+                    <div class="col-6">
+                      <h5>Maximum Results:</h5>
+                      <select name="screennum" id="screennum" class="form-select"><option>100</option><option>200</option><option>300</option><option>400</option><option>500</option></select>
+                    </div>
+                </div><hr>
+              </div>
+              <div class="col-md-6">
+                <div class="row"><br>
+                  <div class="col-6">
+                   <div class="col-md-offset-6">
+                       <h5> </h5><br>
+                       <button name="button" id="screen" class="btn btn-primary">Screen</button>
+                   </div>
+                  </div>
+                  <div id="result_tip" style="display: none"><strong id="results_num">0</strong> Results found!</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="dataTables_scroll" id="products" style="display: none" >
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                    <tr role="row">
+                          <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Product ID</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Product Name</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">CAS No</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Category</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Biological Source</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Associated NAFLD Therapy</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                    </tr>
+                </thead>
+                <tbody id="product_results" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+          <div class="dataTables_scroll" id="compounds" style="display: none" >
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                  <tr role="row">
+                        <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source Type</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound Name</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Weight</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Formula</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Species</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                  </tr>
+                </thead>
+                <tbody id="compound_results" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+    <script>
+    $('#screen').click(function () {
+        document.getElementById("screen").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Screening...'
+        $('#screen').attr("disabled");
+        $('#result_tip').attr("style", "display: none");
+        $('#products').attr("style", "display: none");
+        $('#compounds').attr("style", "display: none");
+        var field = $('#field').val()
+        var HTML = ''
+        $.ajax({
+            url:'screening_screen',
+            type:'get',
+            {#data:{'mw':'', 'tpsa':'', 'hbd':'', 'hba':'', 'rbs':'', 'alogp':'', 'ant':'', 'qed':'', 'screennum':'', 'fd':''},#}
+            data:{'mw':$("input[name='mw']:checked").val(), 'tpsa':$("input[name='tpsa']:checked").val(), 'hbd':$("input[name='hbd']:checked").val(), 'hba':$("input[name='hba']:checked").val(), 'rbs':$("input[name='rbs']:checked").val(), 'alogp':$("input[name='alogp']:checked").val(), 'ant':$("input[name='ant']:checked").val(), 'qed':$('#qed').val(), 'screennum':$('#screennum').val(), 'fd':field},
+            success:function (args) {
+                {#alert(args)#}
+                document.getElementById("results_num").innerHTML = args.num
+                $('#result_tip').removeAttr("style")
+                $('#screen').removeAttr("disabled")
+                document.getElementById("screen").innerHTML = 'Screen'
+                if (args.num>0) {
+                    if (field == 'Bioactive Compounds') {
+                       for (var i = 0; i <= args.num - 1; i++) {
+                            HTML = HTML + "<tr><td>B" + String(args.rows[i][0]).padStart(6, "0") + "</td><td>"
+                            HTML = HTML + args.rows[i][1] + "</td><td>" + args.rows[i][2] + "</td><td>"
+                            HTML = HTML + args.rows[i][3] + "</td><td>" + args.rows[i][4] + "</td><td>"
+                            HTML = HTML + args.rows[i][5] + "</td><td>" + args.rows[i][6] + "</td><td>"
+                            HTML = HTML + "<a href=\"/nafldkb/compound_details?id=" + args.rows[i][0] + "\">Details</a></td></tr>"
+                       }
+                       document.getElementById("compound_results").innerHTML = HTML
+                       $('#compounds').removeAttr("style")
+                    } else if (field == 'Natural Products') {
+                       for (var i = 0; i <= args.num - 1; i++) {
+                            HTML = HTML + "<tr><td>N" + String(args.rows[i][0]).padStart(5, "0") + "</td><td>"
+                            HTML = HTML + args.rows[i][1] + "</td><td>" + args.rows[i][2] + "</td><td>"
+                            HTML = HTML + args.rows[i][3] + "</td><td>" + args.rows[i][4] + "</td><td>"
+                            HTML = HTML + args.rows[i][5] + "</td><td>"
+                            HTML = HTML + "<a href=\"/nafldkb/product_details?id=" + args.rows[i][0] + "\">Details</a></td></tr>"
+                       }
+                       document.getElementById("product_results").innerHTML = HTML
+                       $('#products').removeAttr("style")
+                    }
+                }
+            }
+        })
+    })
+    $( document ).ready(function() {
+        $('#qed').on('input', function(){
+             v = '>' + $('#qed').val();
+             // console.log(v);
+             $('div.qed').text(v);
+        });
+    });
+    $('#field').change(function () {
+        if ($('#field').val() == 'Natural Products') {
+            document.getElementById("NAFLDTargets").innerHTML = "Associated NAFLD Drugs <a data-bs-toggle=\"tooltip\" title=\"The number of NAFLD drugs (refer in particular to herbal medicines) associated with a natural product.\"><svg class=\"bi pe-none me-2\" width=\"16\" height=\"16\"><use xlink:href=\"#info\"></use></svg></a>:"
+        } else {
+            document.getElementById("NAFLDTargets").innerHTML = "Associated NAFLD Targets <a data-bs-toggle=\"tooltip\" title=\"The number of NAFLD targets associated with a bioactive compound.\"><svg class=\"bi pe-none me-2\" width=\"16\" height=\"16\"><use xlink:href=\"#info\"></use></svg></a>:"
+        }
+    })
+    </script>
+  </body>
+</html>

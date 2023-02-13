@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+            <div class="mt-3 p-3">
+            </div>
+            <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+                  <h4 class="text-center">Research Article Annotation</h4>
+              </div>
+            </div>
+          </div>
+            <div class="mt-4 p-3 bg-light rounded">
+              <div class="panel-body">
+                <div class="col-md-12">
+                  <p>Submit a PubMed article ID for automatic annotation with NAFLD knowledge map. </p>
+                    <p>e.g., 35259705; 34986301; 33385317; </p>
+                    <input value='' name='pubmed'/>
+                    <button class="btn btn-primary" id="submit" type="submit" placeholder="PMID" >Submit</button>
+                    <div id="raw"></div>
+                    <p id="result"></p>
+                </div>
+              </div>
+            </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+  <script>
+    $('#submit').click(function () {
+       document.getElementById("submit").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Annotating...'
+      $('#submit').attr("disabled");
+      var input = $("input[name='pubmed']").val();
+      $.ajax({
+          url:'annotation_search',
+          type:'get',
+          data:{'input':input, },
+          success:function (args) {
+            $('#submit').removeAttr("disabled")
+            document.getElementById("submit").innerHTML = 'Submit'
+            //$('#raw').html(args.abstract);
+            //alert(args.mapping);
+            $('#result').html(args.mapping);
+          }
+      });
+    });
+  </script>
+</html>

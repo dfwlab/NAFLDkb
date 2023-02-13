@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+          <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+            <div class="col-md-12">
+              <h4 class="text-center">Clinical Trial Details</h4>
+            </div>
+            </div>
+          </div>
+          <div class="accordion-item rounded">
+            <h2 class="accordion-header" id="panelsStayOpen-heading1">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Summary
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading1">
+              <div class="accordion-body">
+                  <table class="table table-condensed table-hover table-striped">
+                    <tbody>
+                      <tr><td style="vertical-align: middle" width="20%"><strong>Trial ID:</strong></td><td style="text-align: left;padding-left: 20px"> L{{ rows0.0.0|stringformat:"04i" }}</td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Source ID:</strong></td><td style="text-align: left;padding-left: 20px"><a href="{{ rows0.0.24 }}" target="_blank"> {{ rows0.0.1 }}</a>
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Associated Drug:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.2 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.2 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Title:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.4 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.4 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Acronym:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.5 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.5 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Status:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.6 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.6 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Study Results:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.7 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.7 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Results:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.8 is None %}
+                        --
+                        {% else %}
+                          <a href="{{ rows0.0.8 }}" target="_blank">{{ rows0.0.8 }}</a>
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Conditions:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.9 is None %}
+                        --
+                        {% else %}
+                        {{ rows0.0.9 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Interventions:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.10 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.10 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Outcome Measures:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.11 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.11 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Sponsor/Collaborators:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.12 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.12 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Gender:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.13 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.13 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Age:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.14 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.14 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Phases:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.15 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.15 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Enrollment:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.16 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.16 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Study Type:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.17 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.17 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Study Designs:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.18 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.18 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Start Date:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.19 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.19 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Completion Date:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.20 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.20 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Results First Posted:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.21 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.21 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Last Update Posted:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.22 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.22 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Locations:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.23 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.23 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>URL:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.24 is None %}
+                        --
+                        {% else %}
+                          <a href="{{ rows0.0.24 }}" target="_blank">{{ rows0.0.24 }}</a>
+                        {% endif %}
+                      </td></tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#graph"><h6>Knowledge Graph</h6></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#data"><h6>Associated Data</h6></a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                  <div id="graph" class="container-fluid tab-pane active">
+                    <div class="row justify-content-center">
+                      {% load static %}
+                      <div class="col-md-2"><img src="{% static 'images/knowledge_graph_legend1.png' %}" width="100%"></div>
+                      <div class="col-md-10"><div id="container" style="min-width:300px;height:600px;margin: 0 auto;" ></div></div>
+                    </div>
+                  </div>
+                  <div id="data" class="container-fluid tab-pane fade"><br>
+                      <div class="accordion-item rounded">
+                                  <h2 class="accordion-header" id="panelsStayOpen-heading3">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse3" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                      Associated NAFLD Drugs ({{num1}})
+                                    </button>
+                                  </h2>
+                                  <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading3">
+                                    <div class="accordion-body">
+                                          <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid">
+                                            <thead>
+                                              <tr role="row">
+                                                <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Drug ID</th>
+                                                <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Drug Name</th>
+                                                <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Type</th>
+                                                <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">DrugBank ID</th>
+                                                <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Targets</th>
+                                                <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Category</th>
+                                                <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Latest Progress</th>
+                                                <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                                              </tr>
+                                        </thead>
+                                        <tbody>
+                                          {% for row in rows1 %}
+                                            <tr role="row" class="odd text-center">
+                                              <td style="vertical-align: middle"><a href="/nafldkb/drug_details?id={{ row.0 }}">D{{ row.0|stringformat:"03i" }}</a></td>
+                                              <td style="vertical-align: middle">{{ row.1 }}</td>
+                                              <td style="vertical-align: middle">
+                                                {% if row.2 is None %}
+                                                --
+                                                {% else %}
+                                                  {{ row.2 }}
+                                                {% endif %}
+                                              </td>
+                                              <td style="vertical-align: middle">
+                                                {% if row.3 is None %}
+                                                --
+                                                {% else %}
+                                                  {{ row.3 }}
+                                                {% endif %}
+                                              </td>
+                                              <td style="vertical-align: middle">
+                                                {% if row.4 is None %}
+                                                --
+                                                {% else %}
+                                                  {{ row.4 }}
+                                                {% endif %}
+                                              </td>
+                                              <td style="vertical-align: middle">
+                                                {% if row.5 is None %}
+                                                --
+                                                {% else %}
+                                                  {{ row.5 }}
+                                                {% endif %}
+                                              </td>
+                                              <td style="vertical-align: middle">
+                                                {% if row.6 is None %}
+                                                --
+                                                {% else %}
+                                                  {{ row.6 }}
+                                                {% endif %}
+                                              </td>
+                                              <td style="vertical-align: middle"><a href="/nafldkb/drug_details?id={{ row.0 }}">Details</a></td>
+                                            </tr>
+                                          {% endfor %}
+                                        </tbody>
+                                      </table>
+                                      {% if num1 > 10 %}
+                                          <a class="btn btn-default pull-right" href="/nafldkb/drugs?searchterm={{ rows0.0.1 }}" role="button">Show More</a>
+                                      {% endif %}
+                                    </div>
+                                  </div>
+                                </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+  <script>
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+    $('.nav-tabs a').on('shown.bs.tab', function(event){
+        var x = $(event.target).text();         // active tab
+        var y = $(event.relatedTarget).text();  // previous tab
+        $(".act span").text(x);
+        $(".prev span").text(y);
+    });
+});
+Highcharts.chart('container', {
+	chart: {
+		type: 'networkgraph',
+		// height: '50%'
+	},
+	title: {
+		text: 'Knowledge graph of NAFLD clinical trials: {{ rows0.0.1 }}'
+	},
+	subtitle: {
+	    useHTML: true,
+		text: "<span style='color:#1aadce'>Clinical Trial</span> -- <span style='color:#910000'>NAFLD Drugs</span>"
+	},
+	plotOptions: {
+		networkgraph: {
+			keys: ['from', 'to'],
+			layoutAlgorithm: {
+				enableSimulation: true
+			}
+		}
+	},
+	series: [{
+		dataLabels: {
+			enabled: true
+		},
+		data: [{{ links|safe }}],
+		nodes: [{{ nodes|safe }}],
+		point:{
+          events:{
+            click:function(){
+              if (this.datatype=='drugs') {
+                window.open('/nafldkb/drug_details?id='+this.cid,'_self');
+              }
+            }
+          }
+        },
+	}]
+});
+  </script>
+</html>

@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+         <main class="container-fluid">
+           <div class="mt-3 p-3">
+        </div>
+           <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+            <div class="col-md-12">
+              <h4 class="text-center">Investigational Drug Details</h4>
+            </div>
+            </div>
+          </div>
+           <div class="accordion-item rounded">
+            <h2 class="accordion-header" id="panelsStayOpen-heading1">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Summary
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading1">
+              <div class="accordion-body">
+                  <table class="table table-condensed table-hover table-striped">
+                    <tbody>
+                      <tr><td style="vertical-align: middle" width="20%"><strong>Drug ID:</strong></td><td style="text-align: left;padding-left: 20px"> D{{ rows0.0.0|stringformat:"03i" }}</td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Drug Name:</strong></td><td style="text-align: left;padding-left: 20px"> {{ rows0.0.1 }}</td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Synonyms:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.2 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.2 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Type:</strong></td><td style="text-align: left;padding-left: 20px"> {{ rows0.0.3 }} </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>DrugBank ID:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.4 is None %}
+                        --
+                        {% else %}
+                          <a href="https://go.drugbank.com/drugs/{{ rows0.0.4 }}" target="_blank">{{ rows0.0.4 }}</a>
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>DrugBank Description:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.5 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.5 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>PubChem ID:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.6 is None %}
+                        --
+                        {% else %}
+                          <a href="https://pubchem.ncbi.nlm.nih.gov/compound/{{ rows0.0.6 }}" target="_blank">{{ rows0.0.6 }}</a>
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>CasNo:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.7 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.7 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Repositioning for NAFLD:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.8 == 0 %}
+                        No
+                        {% else %}
+                        Yes
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>SMILES:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.9 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.9 }}
+                        {% endif %}
+                      </td></tr>
+                      {% if img %}
+                      <tr><td style="vertical-align: middle"><strong>Structure:</strong></td><td style="text-align: left;padding-left: 20px">
+                        <img src="{{ img }}" id="img">
+                      </td></tr>
+                      {% endif %}
+                      <tr><td style="vertical-align: middle"><strong>InChiKey:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.10 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.10 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Molecular Weight:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.11 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.11 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>DrugBank Targets:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.12 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.12 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>DrugBank MoA:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.13 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.13 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>DrugBank Pharmacology:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.14 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.14 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>DrugBank Indication:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.15 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.15 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Targets:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.16 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.16 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Therapeutic Category:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.17 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.17 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Clinical Trial Progress:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.18 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.18 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Latest Progress:</strong></td><td style="text-align: left;padding-left: 20px">
+                      {% if rows0.0.19 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.19 }}
+                        {% endif %}
+                      </td></tr>
+                    </tbody>
+                  </table>
+              </div>
+            </div>
+          </div>
+           <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#graph"><h6>Knowledge Graph</h6></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#data"><h6>Associated Data</h6></a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                  <div id="graph" class="container-fluid tab-pane active">
+                    <div class="row justify-content-center">
+                      {% load static %}
+                      <div class="col-md-2"><img src="{% static 'images/knowledge_graph_legend1.png' %}" width="100%"></div>
+                      <div class="col-md-10"><div id="container" style="min-width:300px;height:600px;margin: 0 auto;" ></div></div>
+                    </div>
+                  </div>
+                  <div id="data" class="container-fluid tab-pane fade"><br>
+                     <div class="accordion-item rounded">
+                      <h2 class="accordion-header" id="panelsStayOpen-heading3">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse3" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                          Clinical Trials ({{ num1 }})
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapse3" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading3">
+                        <div class="accordion-body">
+                              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid">
+                                <thead>
+                                <tr role="row">
+                                      <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Trial ID</th>
+                                      <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source ID</th>
+                                      <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Phases</th>
+                                      <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Status</th>
+                                      <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Study Results</th>
+                                      <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Start Date</th>
+                                      <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Last Update Posted</th>
+                                      <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              {% for row in rows1 %}
+                                <tr role="row" class="odd text-center">
+                                  <td style="vertical-align: middle"><a href="/nafldkb/trial_details?id={{ row.0 }}">L{{ row.0|stringformat:"04i" }}</a></td>
+                                  <td style="vertical-align: middle"><a href="{{ row.7 }}" target="_blank">{{ row.1 }}</a></td>
+                                  <td style="vertical-align: middle">
+                                    {% if row.2 is None %}
+                                    --
+                                    {% else %}
+                                      {{ row.2 }}
+                                    {% endif %}
+                                  </td>
+                                  <td style="vertical-align: middle">
+                                    {% if row.3 is None %}
+                                    --
+                                    {% else %}
+                                      {{ row.3 }}
+                                    {% endif %}
+                                  </td>
+                                  <td style="vertical-align: middle">
+                                    {% if row.4 is None %}
+                                    --
+                                    {% else %}
+                                      {{ row.4 }}
+                                    {% endif %}
+                                  </td>
+                                  <td style="vertical-align: middle">
+                                    {% if row.5 is None %}
+                                    --
+                                    {% else %}
+                                      {{ row.5 }}
+                                    {% endif %}
+                                  </td>
+                                  <td style="vertical-align: middle">
+                                    {% if row.6 is None %}
+                                    --
+                                    {% else %}
+                                      {{ row.6 }}
+                                    {% endif %}
+                                  </td>
+                                  <td style="vertical-align: middle"><a href="/nafldkb/trial_details?id={{ row.0 }}">Details</a></td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                     <div class="accordion-item rounded">
+                                <h2 class="accordion-header" id="panelsStayOpen-heading2">
+                                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    Associated Therapeutic Targets  ({{num3}})
+                                  </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading2">
+                                  <div class="accordion-body">
+                                        <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid">
+                                          <thead>
+                                            <tr role="row">
+                                              <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Target ID</th>
+                                              <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Target Name</th>
+                                              <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">GENE</th>
+                                              <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Action</th>
+                                              <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Class</th>
+                                              <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">UniProtKB ID</th>
+                                              <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Entry Name</th>
+                                              <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                                            </tr>
+                                      </thead>
+                                      <tbody>
+                                        {% for row in rows3 %}
+                                          <tr role="row" class="odd text-center">
+                                            <td style="vertical-align: middle"><a href="/nafldkb/target_details?id={{ row.0 }}">T{{ row.0|stringformat:"02i" }}</a></td>
+                                            <td style="vertical-align: middle">{{ row.1 }}</td>
+                                            <td style="vertical-align: middle">
+                                              {% if row.2 is None %}
+                                              --
+                                              {% else %}
+                                                {{ row.2 }}
+                                              {% endif %}
+                                            </td>
+                                            <td style="vertical-align: middle">
+                                              {% if row.3 is None %}
+                                              --
+                                              {% else %}
+                                                {{ row.3 }}
+                                              {% endif %}
+                                            </td>
+                                            <td style="vertical-align: middle">
+                                              {% if row.4 is None %}
+                                              --
+                                              {% else %}
+                                                {{ row.4 }}
+                                              {% endif %}
+                                            </td>
+                                            <td style="vertical-align: middle">
+                                              {% if row.5 is None %}
+                                              --
+                                              {% else %}
+                                                <a href="https://www.uniprot.org/uniprot/{{ row.5 }}" target="_blank">{{ row.5 }}</a>
+                                              {% endif %}
+                                            </td>
+                                            <td style="vertical-align: middle">
+                                              {% if row.6 is None %}
+                                              --
+                                              {% else %}
+                                                {{ row.6 }}
+                                              {% endif %}
+                                            </td>
+                                            <td style="vertical-align: middle"><a href="/nafldkb/target_details?id={{ row.0 }}">Details</a></td>
+                                          </tr>
+                                        {% endfor %}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              </div>
+                     <div class="accordion-item rounded">
+                      <h2 class="accordion-header" id="panelsStayOpen-heading4">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse4" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                          Associated Therapeutic Strategies ({{num4}})
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapse4" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading4">
+                        <div class="accordion-body">
+                            <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid">
+                              <thead>
+                                <tr role="row">
+                                  <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Strategy ID</th>
+                                  <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Strategy</th>
+                                  <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Synonyms</th>
+                                  <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Related Targets</th>
+                                  <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Related Drugs</th>
+                                  <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                                </tr>
+                          </thead>
+                          <tbody>
+                            {% for row in rows4 %}
+                              <tr role="row" class="odd text-center">
+                                <td style="vertical-align: middle"><a href="/nafldkb/strategy_details?id={{ row.0 }}">S{{ row.0|stringformat:"02i" }}</a></td>
+                                <td style="vertical-align: middle">{{ row.1 }}</td>
+                                <td style="vertical-align: middle">
+                                  {% if row.2 is None %}
+                                  --
+                                  {% else %}
+                                    {{ row.2 }}
+                                  {% endif %}
+                                </td>
+                                <td style="vertical-align: middle">
+                                  {% if row.3 is None %}
+                                  --
+                                  {% else %}
+                                    {{ row.3 }}
+                                  {% endif %}
+                                </td>
+                                <td style="vertical-align: middle">
+                                  {% if row.4 is None %}
+                                  --
+                                  {% else %}
+                                    {{ row.4 }}
+                                  {% endif %}
+                                </td>
+                                <td style="vertical-align: middle"><a href="/nafldkb/strategy_details?id={{ row.0 }}">Details</a></td>
+                              </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                        </div>
+                      </div>
+                    </div>
+                     <div class="accordion-item rounded">
+                      <h2 class="accordion-header" id="panelsStayOpen-heading5">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse5" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                          Research Articles ({{num2}})
+                        </button>
+                      </h2>
+                      <div id="panelsStayOpen-collapse5" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading5">
+                        <div class="accordion-body">
+                              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid">
+                                <thead>
+                                  <tr role="row">
+                                    <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Article ID</th>
+                                    <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">PMID</th>
+                                    <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source</th>
+                                    <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Title</th>
+                                    <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                                  </tr>
+                            </thead>
+                            <tbody>
+                              {% for row in rows2 %}
+                                <tr role="row" class="odd text-center">
+                                  <td style="vertical-align: middle"><a href="/nafldkb/article_details?id={{ row.0 }}">A{{ row.0|stringformat:"05i" }}</a></td>
+                                  <td style="vertical-align: middle"><a href="https://pubmed.ncbi.nlm.nih.gov/{{ row.1 }}" target="_blank">{{ row.1 }}</a></td>
+                                  <td style="vertical-align: middle">
+                                    {% if row.2 is None %}
+                                    --
+                                    {% else %}
+                                      {{ row.2 }}
+                                    {% endif %}
+                                  </td>
+                                  <td style="vertical-align: middle">
+                                    {% if row.3 is None %}
+                                    --
+                                    {% else %}
+                                      {{ row.3 }}
+                                    {% endif %}
+                                  </td>
+                                  <td style="vertical-align: middle"><a href="/nafldkb/article_details?id={{ row.0 }}">Details</a></td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                              {% if num2 > 20 %}
+                              <a class="btn btn-default pull-right" href="/nafldkb/articles?searchterm={{ rows0.0.1 }}" role="button">Show More</a>
+                              {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+         </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+  <script>
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+    $('.nav-tabs a').on('shown.bs.tab', function(event){
+        var x = $(event.target).text();         // active tab
+        var y = $(event.relatedTarget).text();  // previous tab
+        $(".act span").text(x);
+        $(".prev span").text(y);
+    });
+});
+Highcharts.chart('container', {
+	chart: {
+		type: 'networkgraph',
+		// height: '50%'
+	},
+	title: {
+		text: 'Knowledge graph of NAFLD investigational drug: {{ rows0.0.1 }}'
+	},
+	subtitle: {
+	    useHTML: true,
+		text: "<span style='color:#910000'>NAFLD Drug</span> -- <span style='color:#2f7ed8'>Therapeutic Strategies</span> -- <span style='color:#8bbc21'>Therapeutic Targets</span> -- <span style='color:#1aadce'>Clinical Trials</span>"
+	},
+	plotOptions: {
+		networkgraph: {
+			keys: ['from', 'to'],
+			layoutAlgorithm: {
+				enableSimulation: true
+			}
+		}
+	},
+	series: [{
+		dataLabels: {
+			enabled: true
+		},
+		data: [{{ links|safe }}],
+		nodes: [{{ nodes|safe }}],
+		point:{
+          events:{
+            click:function(){
+              if (this.datatype=='targets'){
+                window.open('/nafldkb/target_details?id='+this.cid,'_self');
+              } else if (this.datatype=='strategies') {
+                window.open('/nafldkb/strategy_details?id='+this.cid,'_self');
+              } else if (this.datatype=='trials') {
+                window.open('/nafldkb/trial_details?id='+this.cid,'_self');
+              }
+            }
+          }
+        },
+	}]
+});
+  </script>
+</html>

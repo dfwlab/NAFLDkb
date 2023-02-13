@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+          <div class="mt-3 p-3">
+          </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+                  <h4 class="text-center">Drug repositioning for non-alcoholic fatty liver disease using NAFLDkb - a case study</h4>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="container">
+                  <div class="col">
+                    {% load static %}
+                    <h5>Introduction</h5>
+                    <p style="text-align:justify;">Non-Alcoholic Fatty Liver Disease (NAFLD) has become a major public health concern, affecting approximately 30% of the adult population worldwide especially among middle-aged populations of developed countries. Meanwhile, there is a crowded clinical landscape driven by NAFLD in the field of drug development. Many have tried and unfortunately failed to find new drugs for this disease, others then count on repositioning or repurposing of drugs to target mild and severe forms of NAFLD. Several studies have provided strong evidence that NAFLD is associated with other diseases such as type 2 diabetes, which have a large number of pharmacological agents approved by FDA or currently being tested for safety and efficacy. Therefore, it is reasonable to identify candidates for NAFLD from existing drugs based on drug disease association (DDA). The knowledge bases and knowledge graphs are introduced to identify better DDA from heterogeneous data. Seeing that a great number of experimental and clinical results have been made in the field of drug development for NAFLD, relational and semantic features of DDA may implicate in the knowledge base of NAFLD, which can play a key role in drug repositioning. We herein present a case study of using <a href="/nafldkb/"><b>NAFLDkb</b></a>, a knowledge base and platform of drug development against NAFLD, for seeking potential drug candidates to target this disease.</p>
+                    <br>
+                    <h5>Method</h5>
+                    <p style="text-align:justify;"><a href="/nafldkb/"><b>NAFLDkb</b></a> includes most of the drugs that are (or were) investigated for NAFLD from published articles, clinical trial information and drug progress reports. When filter the drugs by parameter “<a href="/nafldkb/drugs/?type=All&reposition=Yes&trial=All&progress=All">Repositioning for NAFLD</a>”, the result shows that more than a quarter of the agents are repositioning drugs (154/581), which indicate that identifying candidates from existing drugs is a preferred strategy for NAFLD. </p>
+                    <p style="text-align:center;"><img src="{% static 'images/casestudy/1.png' %}" width="80%"></p>
+                    <p style="text-align:justify;">The pathogenesis of NAFLD is multifactorial, but inflammation is considered the key element of disease progression. The therapeutic strategy “<a href="/nafldkb/strategy_details/?id=5">Anti-inflammatory</a>” in <a href="/nafldkb/"><b>NAFLDkb</b></a> is associated with most of the drugs investigated for NAFLD (59/581), which indicate that “anti-inflammatory” is a prosperous therapeutic strategy against NAFLD. </p>
+                    <p style="text-align:justify;">Peroxisome proliferator-activated receptor (PPAR) agonists are nuclear receptors responsible for the read out of certain genes involved in the regulation of metabolism and fibrotic processes. Activation of its isoform PPAR-γ has anti-fibrotic effects across the process of fibrosis, from the production of stellate cells to the production of fibrotic proteins such as collagen and fibronectin. Thiazolidinediones (TZD), such as <a href="drug_details/?id=275">Pioglitazone</a>, target activation of PPAR-γ have achieved progress in clinical trials for the treatment of non-alcoholic steatohepatitis (NASH), which have demonstrated their ability to target disease resolution and reduce the progression of fibrosis. In <a href="/nafldkb/"><b>NAFLDkb</b></a>, the therapeutic target "<a href="http://192.168.1.6:8000/target_details/?id=5">PPAR-γ</a>" is also associated with most of the drugs investigated for NAFLD (12/581).</p>
+                    <p style="text-align:justify;">NAFLD progression is closely associated with insulin resistance and type 2 diabetes mellitus (T2DM). Available evidence also suggests that a bidirectional relationship exists between NAFLD (or NASH) and T2DM. The data in <a href="/nafldkb/"><b>NAFLDkb</b></a> indicate that several anti-diabetic therapies of T2DM drugs have shown beneficial effect on NAFLD in clinical trials, and <a href="http://192.168.1.6:8000/disease_details/?id=5">T2DM</a> therapies also are most of the repositioning drugs by indication for NAFLD (43/581). </p>
+                    <p style="text-align:justify;">Based on above analysis with <a href="/nafldkb/"><b>NAFLDkb</b></a>, we set up a knowledge-based drug repositioning model using “<a href="/nafldkb/reposition/">Knowledge-based Repositioning</a>” on Tools Page, and resulted in 3 candidates.</p>
+                    <p style="text-align:center;"><img src="{% static 'images/casestudy/2.png' %}" width="80%"></p>
+                    <br>
+                    <h5>Result</h5>
+                    <p style="text-align:justify;">The result includes two drugs that already exist in the list of drugs under investigation for NAFLD (<a href="/nafldkb/drug_details/?id=311">Rosiglitazone</a>, <a href="/nafldkb/drug_details/?id=360">Telmisartan</a>), and another result record “<a href="/nafldkb/candidate_details/?id=56">Icosapent</a>” make a candidate of repositioning drug. The knowledge graph of “<a href="/nafldkb/candidate_details/?id=56">Icosapent</a>” shows that the drug is associated with three therapeutic strategies of NAFLD (<a href="/nafldkb/strategy_details/?id=5">Anti-inflammatory</a>, <a href="strategy_details/?id=2">Enhance lipid metabolism</a> and <a href="strategy_details/?id=3">Anti-fibrosis</a>) and three isoforms of PPAR (<a href="http://192.168.1.6:8000/target_details/?id=3">PPAR-α</a>, <a href="http://192.168.1.6:8000/target_details/?id=4">PPAR-δ</a> and <a href="http://192.168.1.6:8000/target_details/?id=5">PPAR-γ</a>), which indicate that Icosapent would be a promising candidate for drug repositioning to target NAFLD. </p>
+                    <p style="text-align:center;"><img src="{% static 'images/casestudy/3.png' %}" width="80%"></p>
+                    <p style="text-align:center;"><img src="{% static 'images/casestudy/4.png' %}" width="80%"></p>
+                    <p style="text-align:justify;">To expand the chemical space of candidates for NAFLD, we also undertook a generative model of deep learning with three promising PPAR agonists (<a href="/nafldkb/drug_details/?id=275">Pioglitazone</a>, <a href="/nafldkb/drug_details/?id=200">Lanifibranor</a> and <a href="/nafldkb/drug_details/?id=321">Saroglitazar</a>) as reference drugs. The result of <a href="{% static 'data/Leadlike_Compounds.csv' %}">137 lead-like compounds</a> generated by the model exhibits high similarities when compare with reference drugs respectively. Novel scaffolds found in these compounds indicate that there is enormous potential of discovering new agents for NAFLD. </p>
+                    <p style="text-align:center;"><img src="{% static 'images/casestudy/5.png' %}" width="80%"></p>
+                    <br>
+                    <h5>Discussion</h5>
+                    <p style="text-align:justify;">Although such analysis based on knowledge summary and data association using knowledge base tools is insufficient for drug identification of a complex disease, this case study presents the features and capacities of <a href="/nafldkb/"><b>NAFLDkb</b></a>. Users may utilize the data and knowledge associations of <a href="/nafldkb/"><b>NAFLDkb</b></a> to develop more sophisticated models, and toward better drug discovery for NAFLD.</p>
+                    <br>
+                    <h5>References</h5>
+                    <p style="text-align:justify;">
+                    1.  Younossi, Z. M., Koenig, A. B., Abdelatif, D., Fazel, Y., Henry, L., & Wymer, M. (2016). Global epidemiology of nonalcoholic fatty liver disease-Meta-analytic assessment of prevalence, incidence, and outcomes. Hepatology, 64(1), 73–84.<br />
+                    2.  Harrison, S. A., Gawrieh, S., Roberts, K., Lisanti, C. J., Schwope, R. B., Cebe, K. M., … Alkhouri, N. (2021). Prospective evaluation of the prevalence of non-alcoholic fatty liver disease and steatohepatitis in a large middle-aged US cohort. Journal of Hepatology, 75(2), 284–291.<br />
+                    3.  Fraile, J. M., Palliyil, S., Barelle, C., Porter, A. J., & Kovaleva, M. (2021). Non-Alcoholic Steatohepatitis (NASH) - A Review of a Crowded Clinical Landscape, Driven by a Complex Disease. Drug design, development and therapy, 15, 3997–4009. <br />
+                    4.  Tacke, F., & Weiskirchen, R. (2021). Non-alcoholic fatty liver disease (NAFLD)/non-alcoholic steatohepatitis (NASH)-related liver fibrosis: mechanisms, treatment and prevention. Annals of translational medicine, 9(8), 729. <br />
+                    5.  Rotman, Y., & Sanyal, A. J. (2017). Current and upcoming pharmacotherapy for non-alcoholic fatty liver disease. Gut, 66(1), 180–190. <br />
+                    6.  Sookoian, S., & Pirola, C. J. (2019). Repurposing drugs to target nonalcoholic steatohepatitis. World journal of gastroenterology, 25(15), 1783–1796. <br />
+                    7.  Caussy, C., Aubin, A., & Loomba, R. (2021). The Relationship Between Type 2 Diabetes, NAFLD, and Cardiovascular Risk. Current Diabetes Reports, 21(5). <br />
+                    8.  Ferguson, D., & Finck, B. N. (2021). Emerging therapeutic approaches for the treatment of NAFLD and type 2 diabetes mellitus. Nature Reviews Endocrinology, 17(8), 484–495. <br />
+                    9.  Zeng, X., Tu, X., Liu, Y., Fu, X., & Su, Y. (2021). Toward better drug discovery with knowledge graph. Current opinion in structural biology, 72, 114–126. Advance online publication.
+                    </p>
+                    <br>
+                  </div>
+                </div>
+          </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+</html>

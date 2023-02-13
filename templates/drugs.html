@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+          <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+                <h4 class="text-center">Investigational Drugs</h4>
+                <p>Investigational drugs for NAFLD are derived from global clinical trials with the latest progress, and detailed drug properties are extracted from DrugBank and PubChem. For each drug, related therapeutic strategies, targets, and clinical trials in NAFLDkb are presented with knowledge graphs.</p>
+                <div class="row" style="height:400px">
+                  <div class="col-md-6" id="stats1">stats1</div><div class="col-md-6" id="stats2">stats2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+              {%if searchterm %}
+                    <h4>Search for: </h4>
+                    <h5 style="color:red"><p></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ searchterm }}</h5>
+              {% else %}
+                  <div class="card-body">
+                    <form  action="/nafldkb/drugs/" method="get">
+                      <div class="row justify-content-center">
+                        <div class="col-md-2">
+                          <label>Drug Type:</label>
+                          <select class="form-select" name="type">
+                            {%if type %}
+                                <option selected>{{ type }}</option><option>All</option><option>Biological drug</option><option>Biological extract</option><option>Chemical drug</option><option>Combinatory</option><option>Herbal medicine</option><option>Miscellany</option><option>Supplement</option><option>Traditional medicine</option>
+                            {% else %}
+                                <option>All</option><option>Biological drug</option><option>Biological extract</option><option>Chemical drug</option><option>Combinatory</option><option>Herbal medicine</option><option>Miscellany</option><option>Supplement</option><option>Traditional medicine</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label>Repositioning for NAFLD:</label>
+                          <select class="form-select" name="reposition">
+                            {%if reposition %}
+                                <option selected="selected">{{ reposition }}</option><option>All</option><option>Yes</option><option>No</option>
+                            {% else %}
+                                <option>All</option><option>Yes</option><option>No</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label>Clinical Trial Progress:</label>
+                          <select class="form-select" name="trial">
+                            {%if trial %}
+                                <option selected="selected">{{ trial }}</option><option>All</option><option>On-going</option><option>Completed</option><option>Withdrawn</option><option>Terminated</option>
+                            {% else %}
+                                <option>All</option><option>On-going</option><option>Completed</option><option>Withdrawn</option><option>Terminated</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label>Latest Progress:</label>
+                          <select class="form-select" name="progress">
+                            {%if progress %}
+                                <option selected="selected">{{ progress }}</option><option>All</option><option>Under clinical trials</option><option>Under investigation</option><option>Failed in clinical trials</option><option>Advanced in clinical trials</option><option>Approval rejected</option><option>Approved</option>
+                            {% else %}
+                                <option>All</option><option>Under clinical trials</option><option>Under investigation</option><option>Failed in clinical trials</option><option>Advanced in clinical trials</option><option>Approval rejected</option><option>Approved</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <label>Filter:</label>
+                            </div>
+                            <div class="col-md-3">
+                              <a data-bs-toggle="tooltip" title="Please see 'Tools' page for chemical structure search"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a>
+                            </div>
+                          </div>
+                          <button type="submit" class="btn btn-light"><svg class="bi pe-none me-2" width="32" height="16"><use xlink:href="#Funnel"></use></svg></button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+              {% endif %}
+                <div><strong>{{ num }}</strong> records.</div>
+              </div>
+            </div>
+          </div>
+          <div class="dataTables_scroll">
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                  <tr role="row">
+                        <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Drug ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Drug Name</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Type</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">DrugBank ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Targets</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Category</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Latest Progress</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in page_list %}
+                    <tr role="row" class="odd text-center">
+                      <td style="vertical-align: middle"><a href="/nafldkb/drug_details?id={{ row.0 }}">D{{ row.0|stringformat:"03i" }}</a></td>
+                      <td style="vertical-align: middle">{{ row.1 }}</td>
+                      <td style="vertical-align: middle">
+                        {% if row.2 is None %}
+                        --
+                        {% else %}
+                          {{ row.2 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle">
+                        {% if row.3 is None %}
+                        --
+                        {% else %}
+                          <a href="https://go.drugbank.com/drugs/{{ row.3 }}" target="_blank">{{ row.3 }}</a>
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle">
+                        {% if row.4 is None %}
+                        --
+                        {% else %}
+                          {{ row.4 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle">
+                        {% if row.5 is None %}
+                        --
+                        {% else %}
+                          {{ row.5 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle">
+                        {% if row.6 is None %}
+                        --
+                        {% else %}
+                          {{ row.6 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle"><a href="/nafldkb/drug_details?id={{ row.0 }}">Details</a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+              <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                  {% if second_list_obj.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?type={{ type }}&reposition={{ reposition }}&trial={{ trial }}&progress={{ progress }}&searchterm={{ searchterm }}&page={{ second_list_obj.previous_page_number }}">Previous</a></li>
+                  {% else %}
+                  <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                  {% endif %}
+                  
+                  {% if second_list_obj.number > 2 %}
+                  <li class="page-item"><a class="page-link" href="?type={{ type }}&reposition={{ reposition }}&trial={{ trial }}&progress={{ progress }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:-2 }}">{{ second_list_obj.number|add:-2 }} </a></li>
+                  {% endif %}
+                  {% if second_list_obj.number > 1 %}
+                  <li class="page-item"><a class="page-link" href="?type={{ type }}&reposition={{ reposition }}&trial={{ trial }}&progress={{ progress }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:-1 }}">{{ second_list_obj.number|add:-1 }} </a></li>
+                  {% endif %}
+                  <li class="page-item"><a class="page-link" href="?type={{ type }}&reposition={{ reposition }}&trial={{ trial }}&progress={{ progress }}&searchterm={{ searchterm }}&page={{ second_list_obj.number }}">{{ second_list_obj.number }} </a></li>
+                  {% if second_list_obj.number < p.num_pages %}
+                  <li class="page-item"><a class="page-link" href="?type={{ type }}&reposition={{ reposition }}&trial={{ trial }}&progress={{ progress }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:1 }}">{{ second_list_obj.number|add:1 }} </a></li>
+                  {% endif %}
+                  {% if second_list_obj.number < p.num_pages|add:-1 %}
+                  <li class="page-item"><a class="page-link" href="?type={{ type }}&reposition={{ reposition }}&trial={{ trial }}&progress={{ progress }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:2 }}">{{ second_list_obj.number|add:2 }} </a></li>
+                  {% endif %}
+
+                  {% if second_list_obj.has_next %}
+                  <li class="page-item"><a class="page-link" href="?type={{ type }}&reposition={{ reposition }}&trial={{ trial }}&progress={{ progress }}&searchterm={{ searchterm }}&page={{ second_list_obj.next_page_number }}">Next</a></li>
+                  {% else %}
+                  <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+
+            </div>
+          </div>
+        </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+  <script>
+    Highcharts.chart('stats1', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Type'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'Type',
+            colorByPoint: true,
+            data: [{{ stats_type|safe }}],
+        }]
+    });
+
+    Highcharts.chart('stats2', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Category'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'Category',
+            colorByPoint: true,
+            data: [{{ stats_category|safe }}],
+        }]
+    });
+      </script>
+</html>

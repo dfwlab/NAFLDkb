@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+          <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+                <h4 class="text-center">Bioactive Compounds</h4>
+                <p>Drug-like bioactive compounds for NAFLD-related targets (i.e., therapeutic targets in NAFLDkb) are extracted from ChEMBL. Detailed information and structure for each compound are provided, along with knowledge graphs linked with related therapeutic targets.</p>
+                <div class="row" style="height:400px">
+                  <div class="col-md-6" id="stats1" style="width:50%">stats1</div><div class="col-md-6" id="stats2" style="width:50%">stats2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+              {%if searchterm %}
+                    <h4>Search for: </h4>
+                    <h5 style="color:red"><p></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ searchterm }}</h5>
+              {% else %}
+                  <div class="card-body">
+                    <form  action="/nafldkb/compounds/" method="get">
+                      <div class="row justify-content-center">
+                        <div class="col-md-2">
+                          <label>Source Type:</label>
+                          <select class="form-select" name="type">
+                            {%if type %}
+                                <option selected>{{ type }}</option><option>All</option><option>Small molecule</option><option>Protein</option><option>Oligosacchride</option><option>Unknown</option>
+                            {% else %}
+                                <option>All</option><option>Small molecule</option><option>Protein</option><option>Oligosacchride</option><option>Unknown</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label>Molecular Species:</label>
+                          <select class="form-select" name="species">
+                            {%if species %}
+                                <option selected="selected">{{ species }}</option><option>All</option><option>ACID</option><option>BASE</option><option>NEUTRAL</option>
+                            {% else %}
+                                <option>All</option><option>ACID</option><option>BASE</option><option>NEUTRAL</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label>Lipinski RO5 Violations:</label>
+                          <select class="form-select" name="ro5">
+                            {%if ro5 %}
+                                <option selected="selected">{{ ro5 }}</option><option>All</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+                            {% else %}
+                                <option>All</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-3">
+                          <label>Associated NAFLD Targets:</label>
+                          <select class="form-select" name="ant">
+                            {%if ant %}
+                                <option selected="selected">{{ ant }}</option><option>All</option>
+                                {% for row in rows1 %}
+                                      <option>{{ row.0 }}</option>
+                                {% endfor %}
+                            {% else %}
+                                <option>All</option>
+                                {% for row in rows1 %}
+                                      <option>{{ row.0 }}</option>
+                                {% endfor %}
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <div class="row">
+                            <div class="col-md-3">
+                              <label>Filter:</label>
+                            </div>
+                            <div class="col-md-3">
+                              <a data-bs-toggle="tooltip" title="Please see 'Tools' page for more sophisticated drug-like or lead-like analysis"><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a>
+                            </div>
+                          </div>
+                          <button type="submit" class="btn btn-light"><svg class="bi pe-none me-2" width="32" height="16"><use xlink:href="#Funnel"></use></svg></button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+              {% endif %}
+                <div><strong>{{ num }}</strong> records.</div>
+              </div>
+            </div>
+          </div>
+          <div class="dataTables_scroll">
+            <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+              <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+                <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                  <thead>
+                    <tr role="row">
+                          <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound ID</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source ID</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source Type</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound Name</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Weight</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Formula</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Species</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in page_list %}
+                      <tr role="row" class="odd text-center">
+                        <td style="vertical-align: middle"><a href="/nafldkb/compound_details?id={{ row.0 }}">B{{ row.0|stringformat:"06i" }}</a></td>
+                        <td style="vertical-align: middle"><a href="https://www.ebi.ac.uk/chembl/compound_report_card/{{ row.1 }}" target="_blank">{{ row.1 }}</a></td>
+                        <td style="vertical-align: middle">
+                          {% if row.2 is None %}
+                          --
+                          {% else %}
+                            {{ row.2 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.3 is None %}
+                          --
+                          {% else %}
+                            {{ row.3 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.4 is None %}
+                          --
+                          {% else %}
+                            {{ row.4 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.5 is None %}
+                          --
+                          {% else %}
+                            {{ row.5 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.6 is None %}
+                          --
+                          {% else %}
+                            {{ row.6 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle"><a href="/nafldkb/compound_details?id={{ row.0 }}">Details</a></td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+                <nav aria-label="...">
+                  <ul class="pagination justify-content-center">
+                    {% if second_list_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?type={{ type }}&species={{ species }}&ro5={{ ro5 }}&ant={{ ant }}&searchterm={{ searchterm }}&page={{ second_list_obj.previous_page_number }}">Previous</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                    {% endif %}
+                    
+                    {% if second_list_obj.number > 2 %}
+                    <li class="page-item"><a class="page-link" href="?type={{ type }}&species={{ species }}&ro5={{ ro5 }}&ant={{ ant }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:-2 }}">{{ second_list_obj.number|add:-2 }} </a></li>
+                    {% endif %}
+                    {% if second_list_obj.number > 1 %}
+                    <li class="page-item"><a class="page-link" href="?type={{ type }}&species={{ species }}&ro5={{ ro5 }}&ant={{ ant }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:-1 }}">{{ second_list_obj.number|add:-1 }} </a></li>
+                    {% endif %}
+                    <li class="page-item"><a class="page-link" href="?type={{ type }}&species={{ species }}&ro5={{ ro5 }}&ant={{ ant }}&searchterm={{ searchterm }}&page={{ second_list_obj.number }}">{{ second_list_obj.number }} </a></li>
+                    {% if second_list_obj.number < p.num_pages %}
+                    <li class="page-item"><a class="page-link" href="?type={{ type }}&species={{ species }}&ro5={{ ro5 }}&ant={{ ant }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:1 }}">{{ second_list_obj.number|add:1 }} </a></li>
+                    {% endif %}
+                    {% if second_list_obj.number < p.num_pages|add:-1 %}
+                    <li class="page-item"><a class="page-link" href="?type={{ type }}&species={{ species }}&ro5={{ ro5 }}&ant={{ ant }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:2 }}">{{ second_list_obj.number|add:2 }} </a></li>
+                    {% endif %}
+  
+                    {% if second_list_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?type={{ type }}&species={{ species }}&ro5={{ ro5 }}&ant={{ ant }}&searchterm={{ searchterm }}&page={{ second_list_obj.next_page_number }}">Next</a></li>
+                    {% else %}
+                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                    {% endif %}
+                  </ul>
+                </nav>
+
+              </div>
+            </div>
+          </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+  <script>
+    Highcharts.chart('stats1', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Lipinski RO5 Violations'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'ro5',
+            colorByPoint: true,
+            data: [{{ stats_ro5s|safe }}],
+        }]
+    });
+
+    Highcharts.chart('stats2', {
+    series: [{
+        type: 'wordcloud',
+        data: [{{ stats_targets|safe }}],
+        name: 'Target',
+        spiral: 'rectangular',
+        placementStrategy: 'center',
+        
+    }],
+    title: {
+        text: 'Associated NAFLD Targets'
+    },
+    tooltip:{
+      pointFormat:'<span style="color:{point.color}">●</span> {point.target}: <b>{point.raw}</b><br/>'
+    },
+});
+      </script>
+</html>

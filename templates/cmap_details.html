@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+         <main class="container-fluid">
+           <div class="mt-3 p-3">
+            </div>
+           <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+              <h4 class="text-center">CMap Candidate Details</h4>
+              </div>
+            </div>
+          </div>
+           <div class="accordion-item rounded">
+            <h2 class="accordion-header" id="panelsStayOpen-heading1">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse1" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Summary
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapse1" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading1">
+              <div class="accordion-body">
+                <div class="row">
+                  <div class="col-5">
+                      {% if img %}
+                      <strong>Structure:</strong>
+                        <img src="{{ img }}" id="img">
+                      {% endif %}
+                  </div>
+                  <div class="col-7">
+                  <table class="table table-condensed table-hover table-striped">
+                    <tbody>
+                      <tr><td style="vertical-align: middle" width="20%"><strong>CMap ID:</strong></td><td style="text-align: left;padding-left: 20px"> C{{ rows0.0.0|stringformat:"05i" }}</td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Pert ID:</strong></td><td style="text-align: left;padding-left: 20px"><a href="https://clue.io/command?q={{ rows0.0.1 }}" target="_blank"> {{ rows0.0.1 }}</a></td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Compound Name:</strong></td><td style="text-align: left;padding-left: 20px"> {{ rows0.0.2 }}</td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Targets:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.3 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.3 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>MoA:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.4 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.4 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>SMILES:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.5 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.5 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>InchiKey:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.6 is None  %}
+                        --
+                        {% else %}
+                        {{ rows0.0.6 }}
+                        {% endif %}
+                      </td></tr>
+                      <tr><td style="vertical-align: middle"><strong>Compound Aliases:</strong></td><td style="text-align: left;padding-left: 20px">
+                        {% if rows0.0.7 is None %}
+                        --
+                        {% else %}
+                          {{ rows0.0.7 }}
+                        {% endif %}
+                      </td></tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+           </div>
+           <div class="accordion-item rounded">
+            <h2 class="accordion-header" id="panelsStayOpen-heading2">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse2" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                Connectivity Scores
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapse2" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-heading2">
+              <div class="accordion-body">
+                    <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid">
+                      <thead>
+                        <tr role="row">
+                          <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Score ID</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Pert ID <a data-bs-toggle="tooltip" title="A unique identifier (Broad ID) for a perturbagen (reagent used for cell treatment and determination of the resulting transcriptional response)."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Cell Line <a data-bs-toggle="tooltip" title="The in vitro model in which an experiment is performed."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Pert Dose <a data-bs-toggle="tooltip" title="The dose information for a perturbagen treatment."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Pert Time <a data-bs-toggle="tooltip" title="The length of time that a perturbagen was applied to the cells."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Raw Score (GSE126848) <a data-bs-toggle="tooltip" title="The weighted enrichment score between the expression profile of GSE126848 and reference signatures."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a> </th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Normalized Score (GSE126848) <a data-bs-toggle="tooltip" title="Normalized score by dividing the raw score by the signed mean within each subset of the reference signatures, grouped by cell line and perturbagen type."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">fdr_q_nlog10 (GSE126848) <a data-bs-toggle="tooltip" title=" The false discovery rate computed for each reference signature."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Raw Score (GSE135251) <a data-bs-toggle="tooltip" title="The weighted enrichment score between the expression profile of GSE126848 and reference signatures."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Normalized Score (GSE135251) <a data-bs-toggle="tooltip" title="Normalized score by dividing the raw score by the signed mean within each subset of the reference signatures, grouped by cell line and perturbagen type."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">fdr_q_nlog10 (GSE135251) <a data-bs-toggle="tooltip" title=" The false discovery rate computed for each reference signature."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a></th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in rows1 %}
+                      <tr role="row" class="odd text-center">
+                        <td style="vertical-align: middle">{{ row.0 }}</td>
+                        <td style="vertical-align: middle">
+                          {% if row.1 is None %}
+                          --
+                          {% else %}
+                            {{ row.1 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.2 is None %}
+                          --
+                          {% else %}
+                            {{ row.2 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.3 is None %}
+                          --
+                          {% else %}
+                            {{ row.3 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.4 is None %}
+                          --
+                          {% else %}
+                            {{ row.4 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.5 is None %}
+                          --
+                          {% else %}
+                            {{ row.5 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.7 is None %}
+                          --
+                          {% else %}
+                            {{ row.7 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.6 is None %}
+                          --
+                          {% else %}
+                            {{ row.6 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.8 is None %}
+                          --
+                          {% else %}
+                            {{ row.8 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.10 is None %}
+                          --
+                          {% else %}
+                            {{ row.10 }}
+                          {% endif %}
+                        </td>
+                        <td style="vertical-align: middle">
+                          {% if row.9 is None %}
+                          --
+                          {% else %}
+                            {{ row.9 }}
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+                  <caption>The <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE89632">GSE89632</a> and <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE126848">GSE126848</a> datasets are hepatic gene expression profiles of nonalcoholic fatty liver disease (NAFLD).</caption>
+                </table>
+              </div>
+            </div>
+          </div>
+         </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+</html>

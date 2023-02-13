@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+            <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+                  <h4 class="text-center">Knowledge-based Drug Repositioning Tool</h4>
+          </div>
+          <div class="card bg-light mt-3 p-1 shadow-sm">
+            <div class="card-body text-dark p-4" id="search-field-container">
+              <h5>Reposition Model Building:</h5>
+              <div>
+                <p class="instruction" id="search-field-instruction" style="display: block">Click the <em>Add Association Node</em> button below to get started. </p>
+              </div>
+              <div id="model-container">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <h6>Node Type:</h6>
+                  </div>
+                  <div class="col-sm-7">
+                    <h6>Node Name:</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <select name="type" id="type0" class="form-select" onChange="changeType(this.id)"><option value="targets">Therapeutic Targets</option><option value="strategies">Therapeutic Strategies</option><option value="indication">Drug Indications</option></select>
+                  </div>
+                  <div class="col-sm-7">
+                    <select name="node" id="node0" class="form-select"><option></option></select>
+                  </div>
+                </div>
+              </div>
+              <br>
+                <div class="drugbank-icon icon-add">
+                  <button id="add_node" class="btn btn-outline-secondary"><svg class="bi pe-none me-2" width="32" height="32"><use xlink:href="#Nodeplus"></use></svg>Add Association Node</button>
+                </div><hr>
+              <h5>Reposition Drug Types:</h5><br>
+                 <div class="form-group">
+                  <div class="form-check form-check-inline">
+                   <label class="form-check-label pl-1"><input type="radio" name="drug_type" value="all" class="form-check-input" checked="checked">All </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                   <label class="form-check-label"><input type="radio" name="drug_type" value="approved" class="form-check-input">Approved </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                   <label class="form-check-label"><input type="radio" name="drug_type" value="investigational" data-similarity="true" class="form-check-input">Investigational </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                   <label class="form-check-label"><input type="radio" name="drug_type" value="experimental" data-similarity="true" class="form-check-input">Experimental </label>
+                  </div>
+                 </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" id="reposition" type="submit">Reposition</button>
+                <button class="btn btn-secondary" id="reset" onclick="location.reload()">Reset</button>
+                <div id="result_tip" style="display: none"><strong id="results_num">0</strong> Results found!</div>
+            </div>
+          </div>
+          <br>
+            <div class="panel-body">
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#graph"><h6>Knowledge Graph</h6></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#data"><h6>Result Data</h6></a>
+                </li>
+              </ul>
+              <div class="tab-content">
+                  <div id="graph" class="container-fluid tab-pane active">
+                    <div class="row justify-content-center">
+                      {% load static %}
+                      <div class="col-md-2"><img src="{% static 'images/knowledge_graph_legend1.png' %}" width="100%"></div>
+                      <div class="col-md-10"><div id="container" style="min-width:300px;height:600px;margin: 0 auto;" ></div></div>
+                    </div>
+                  </div>
+                  <div id="data" class="container-fluid tab-pane fade"><br>
+                    <div class="dataTables_scroll" id="candidates" style="display: none" >
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                  <tr role="row">
+                        <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">DrugBank ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Drug Type</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Drug Name</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">CAS No</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Groups</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Under Investigation for NAFLD</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                  </tr>
+                </thead>
+                <tbody id="candidate_results" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+                  </div>
+              </div>
+            </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+  <script>
+  var count = 0
+  $('#add_node').click(function () {
+      count++;
+      var ids="Add"+count;
+      var idsType="type"+count;
+      var idsNode="node"+count;
+      var idsRemove="remove"+count;
+      var idsRow="row"+count;
+      var HTML =""
+      console.log("ids:"+ids);
+      HTML = "<div class=\"row\" id=\"" + idsRow + "\"><div class=\"col-sm-3\" name=\"type\"><select id=\"" + idsType +"\" class=\"form-select\" onChange=\"changeType(this.id)\"><option value=\"targets\">Therapeutic Targets</option><option value=\"strategies\">Therapeutic Strategies</option><option value=\"indication\">Drug Indications</option></select></div>"
+      HTML = HTML + "<div class=\"col-sm-7\"><select name=\"node\" id=\"" + idsNode +"\" class=\"form-select\">"
+      $.ajax({
+          url:'reposition_node',
+          type:'get',
+          {#data:{'type':''},#}
+          data:{'type':'targets'},
+          success:function (args) {
+              {#alert(args)#}
+              for (var i = 0; i <= args.num - 1; i++) {
+                  HTML = HTML + "<option value=\"" + args.rows0[i][0] + "\">" + args.rows0[i][1] + "</option>"
+              }
+              HTML = HTML + "</select></div>"
+              HTML = HTML + "<div class=\"col-sm-1\"><button id=\"" + idsRemove + "\" name=\"remove_node\" class=\"btn\" data-bs-toggle=\"tooltip\" title=\"Remove Node\" onclick=\"remove_node(this.id)\"><svg class=\"bi pe-none me-2\" width=\"20\" height=\"20\"><use xlink:href=\"#Removex\"></use></svg></button></div></div>"
+              $('#model-container').append(HTML);
+          }
+      })
+  })
+  $('#reposition').click(function () {
+      document.getElementById("reposition").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Repositioning...'
+      $('#reposition').attr("disabled");
+      $('#result_tip').attr("style", "display: none");
+      $('#candidates').attr("style", "display: none");
+      var drug_type = $("input[name='drug_type']:checked").val();
+      var targets = '';
+      var strategies = '';
+      var indication = '';
+      var idsType = '';
+      var idsNode = '';
+      var HTML = '';
+      for (var i = 0; i <= count; i++) {
+          idsType = "type" + i.toString();
+          idsNode = "node" + i.toString();
+          if ($('#'+idsType).val() == 'targets' ) {
+            if (targets == '') {
+                targets = $('#'+idsNode).val()
+            } else {
+                targets = targets + ';' + $('#'+idsNode).val()
+            }
+          }
+          else if ($('#'+idsType).val() == 'strategies' ) {
+            if (strategies == '') {
+                strategies = $('#'+idsNode).val()
+            } else {
+                strategies = strategies + ';' + $('#'+idsNode).val()
+            }
+          }
+          else if ($('#'+idsType).val() == 'indication' ) {
+            if (indication == '') {
+                indication = $('#'+idsNode).val()
+            } else {
+                indication = indication + ';' + $('#'+idsNode).val()
+            }
+          }
+      }
+      $.ajax({
+          url:'reposition',
+          type:'get',
+          {#data:{'type':'', 'targets':'', 'strategies':'', 'indication':''},#}
+          data:{'type':drug_type, 'targets':targets, 'strategies':strategies, 'indication':indication, },
+          success:function (args) {
+              {#alert(args)#}
+              document.getElementById("results_num").innerHTML = args.num
+              $('#result_tip').removeAttr("style")
+              $('#reposition').removeAttr("disabled")
+              document.getElementById("reposition").innerHTML = 'Reposition'
+              if (args.num>0) {
+                  for (var i = 0; i <= args.num - 1; i++) {
+                      HTML = HTML + "<tr><td><a href=\"https://go.drugbank.com/drugs/" + args.rows[i][0] + "\" target=\"_blank\">" + args.rows[i][0] + "</a></td><td>"
+                      HTML = HTML + args.rows[i][1] + "</td><td>" + args.rows[i][2] + "</td><td>"
+                      HTML = HTML + args.rows[i][3] + "</td><td>" + args.rows[i][4] + "</td><td>"
+                      if (args.rows[i][5] === null) {
+                         if (args.rows[i][6] === null) {
+                             HTML = HTML + "No</td><td></td></tr>"
+                         } else {
+                             HTML = HTML + "No</td><td>"
+                         HTML = HTML + "<a href=\"/nafldkb/candidate_details?id=" + args.rows[i][6] + "\">Details</a></td></tr>"
+                         }
+                      }
+                      else {
+                         HTML = HTML + "Yes</td><td>"
+                         HTML = HTML + "<a href=\"/nafldkb/drug_details?id=" + args.rows[i][5] + "\">Details</a></td></tr>"
+                      }
+                  }
+                  document.getElementById("candidate_results").innerHTML = HTML
+                  $('#candidates').removeAttr("style")
+              }
+              Highcharts.chart('container', {
+                  chart: {
+                      type: 'networkgraph',
+                      // height: '50%'
+                  },
+                  title: {
+                      text: 'Knowledge graph of drug repositioning model for NAFLD'
+                  },
+                  subtitle: {
+                      useHTML: true,
+                      text: "<span style='color:#1aadce'>Repositioning Candidates</span> -- <span style='color:#2f7ed8'>Therapeutic Strategies</span> -- <span style='color:#8bbc21'>Therapeutic Targets</span> -- <span style='color:#f28f43'>Indications (NAFLD Associated Diseases)</span>"
+                  },
+                  plotOptions: {
+                      networkgraph: {
+                          keys: ['from', 'to'],
+                          layoutAlgorithm: {
+                              enableSimulation: true
+                          }
+                      }
+                  },
+                  series: [{
+                      dataLabels: {
+                          enabled: true
+                      },
+                      data: args.links,
+                      nodes: args.nodes,
+                      point:{
+                          events:{
+                            click:function(){
+                              if (this.datatype=='targets'){
+                                window.open('/nafldkb/target_details?id='+this.cid,'_self');
+                              } else if (this.datatype=='diseases') {
+                                window.open('/nafldkb/disease_details?id='+this.cid,'_self');
+                              } else if (this.datatype=='strategies') {
+                                window.open('/nafldkb/strategy_details?id='+this.cid,'_self');
+                              } else if (this.datatype=='candidates') {
+                                if (this.cid != 'None') {
+                                    window.open('/nafldkb/candidate_details?id='+this.cid,'_self');
+                                } else if (this.did != 'None') {
+                                    window.open('/nafldkb/drug_details?id='+this.did,'_self');
+                                }
+                              }
+                            }
+                          }
+                        },
+                  }]
+              });
+          }
+      })
+  })
+  $( document ).ready(function() {
+      var type = $("[name='type']").val()
+      var HTML = ''
+      $.ajax({
+          url:'reposition_node',
+          type:'get',
+          {#data:{'type':''},#}
+          data:{'type':type},
+          success:function (args) {
+              {#alert(args)#}
+              for (var i = 0; i <= args.num - 1; i++) {
+                  HTML = HTML + "<option value=\"" + args.rows0[i][0] + "\">" + args.rows0[i][1] + "</option>"
+              }
+              document.getElementById("node0").innerHTML = HTML
+          }
+      })
+      $(".nav-tabs a").click(function(){
+          $(this).tab('show');
+      });
+      $('.nav-tabs a').on('shown.bs.tab', function(event){
+          var x = $(event.target).text();         // active tab
+          var y = $(event.relatedTarget).text();  // previous tab
+          $(".act span").text(x);
+          $(".prev span").text(y);
+      });
+  })
+  function changeType(id) {
+      var objIndex=id.charAt(id.length-1)
+      var type = $('#' + id).val()
+      var nodeId='node'+objIndex
+      var HTML = ''
+      $.ajax({
+          url:'reposition_node',
+          type:'get',
+          {#data:{'type':''},#}
+          data:{'type':type},
+          success:function (args) {
+              {#alert(args)#}
+              for (var i = 0; i <= args.num - 1; i++) {
+                  HTML = HTML + "<option value=\"" + args.rows0[i][0] + "\">" + args.rows0[i][1] + "</option>"
+              }
+              document.getElementById(nodeId).innerHTML = HTML
+          }
+      })
+  }
+  function remove_node(id) {
+      var objIndex=id.charAt(id.length-1);
+      var rowId='row'+objIndex;
+      if (objIndex==count) {
+        $('#' + rowId).remove();
+        count--;
+      }
+  }
+  </script>
+  </body>
+</html>

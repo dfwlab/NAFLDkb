@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+      <main class="container-fluid">
+        <div class="mt-3 p-3">
+        </div>
+          {% load static %}
+          <p style="text-align:center;"><img src="{% static 'images/nafldkb.png' %}" width="30%"></p>
+          <div class="mt-3 p-3 rounded container-md">
+            <div class="row">
+              <br>
+              <div>
+                <div class="row">
+                  <div>
+                      <form action="/nafldkb/search/" method="get">
+                          {% csrf_token %}
+                          <div class="input-group input-group-lg">
+                              <input id="input_id" class="form-control" name="searchterm" placeholder="Search anything about NAFLD" onkeydown="entersearch()">
+                              <button class="btn btn-primary" type="submit">Search</button>
+                          </div>
+                      </form>
+                  </div>
+                </div>
+                <br>
+                <form action="/nafldkb/search/" method="post">
+                  {% csrf_token %}
+                  <div class="col-md" id="exp">
+                      <span class="help-block text-center">e.g.,
+                          <a href="/nafldkb/search?searchterm=Saroglitazar">Saroglitazar</a>;
+                          <a href="/nafldkb/search?searchterm=Resmetirom">Resmetirom</a>;
+                          <a href="/nafldkb/search?searchterm=Pioglitazone">Pioglitazone</a>;
+                          <a href="/nafldkb/search?searchterm=PPAR">PPAR</a>;
+                          <a href="/nafldkb/search?searchterm=FXR">FXR</a>;
+                          <a href="/nafldkb/search?searchterm=fibrosis">Fibrosis</a>;
+                          <a href="/nafldkb/search?searchterm=Insulin resistance">Insulin resistance</a>;
+                          <a href="/nafldkb/search?searchterm=NCT03639623">NCT03639623</a>;
+                          <a href="/nafldkb/search?searchterm=Diabetes mellitus">Diabetes mellitus</a>;
+                          <a href="/nafldkb/search?searchterm=Silybum marianum"><i>Silybum marianum</i></a>
+                      </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <blockquote class="blockquote">
+              <p>
+              <h5 style="text-align: center"><a href="/nafldkb/about">Knowledge Base Curation</a></h5>
+              </p>
+          </blockquote>
+          <div class="row mt-4 p-1 rounded">
+              {% load static %}
+          <div class="col text-center">
+          <img src="{% static 'images/pathogenesis.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/pathogenesis">8</a></h5>
+          <span class="text-muted">Pathogenesis</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Therapeutic strategies.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/strategies">17</a></h5>
+          <span class="text-muted">Therapeutic Strategies</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Targets.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/targets">45</a></h5>
+          <span class="text-muted">Therapeutic Targets</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/drugs.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/drugs">581</a></h5>
+          <span class="text-muted">Investigational Drugs</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Clinical trials.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/trials">1001</a></h5>
+          <span class="text-muted">Clinical Trials</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/research articles.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/articles">40,433</a></h5>
+          <span class="text-muted">Research Articles</span>
+          </div>
+          </div>
+          <div class="row mt-4 p-1 rounded">
+          <div class="col text-center">
+          <img src="{% static 'images/models.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/models">68</a></h5>
+              <span class="text-muted"><I>In vitro</I> & <I>In vivo</I> Models</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Candidates.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/candidates">1,608</a></h5>
+          <span class="text-muted">Repositioning Candidates</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Compounds.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/compounds">147,604</a></h5>
+          <span class="text-muted">Bioactive Compounds</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/cmap.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/cmap">34,419</a></h5>
+          <span class="text-muted">CMap Candidates</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/natural products.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/products">17,704</a></h5>
+          <span class="text-muted">Natural Products</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Associated diseases.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+          <h5><a href="/nafldkb/diseases">17</a></h5>
+          <span class="text-muted">Associated Diseases</span>
+          </div>
+          </div>
+          <br><br>
+          <p style="text-align:center;"><img src="{% static 'images/map.png' %}" width="90%"></p>
+      </main>
+    </div>
+    <br>
+    {% include "footer.html" %}
+  <script>
+$(document).ready(function() {
+    var trigger = $('.hamburger'),
+        overlay = $('.overlay'),
+        isClosed = false;
+    trigger.click(function() {
+        hamburger_cross();
+    });
+    function hamburger_cross() {
+        if (isClosed == true) {
+            overlay.hide();
+            trigger.removeClass('is-open');
+            trigger.addClass('is-closed');
+            isClosed = false;
+        } else {
+            overlay.show();
+            trigger.removeClass('is-closed');
+            trigger.addClass('is-open');
+            isClosed = true;
+        }
+    }
+    $('[data-toggle="offcanvas"]').click(function() {
+        $('#wrapper').toggleClass('toggled');
+    });
+});
+  </script>
+  </body>
+</html>

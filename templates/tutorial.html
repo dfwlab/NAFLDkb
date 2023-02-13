@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+            <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+              <div class="panel-body">
+              <div class="col-md-12">
+                <h4 class="text-center">Tutorial</h4>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-light rounded">
+          <div class="container">
+                <div class="col">
+                  {% load static %}
+                  <h5>1. Search</h5>
+                  <p style="text-align:justify;">The search function on the <a href="/nafldkb/"><b>Home Page</b></a> and navigation bar provides full-text searching of <a href="/nafldkb/"><b>NAFLDkb</b></a>. All kinds of keywords about NAFLD and NAFLD-related drugs can be used as the search criteria. Users can also click the key words below the search box to run some example search queries.</p>
+                  <div class="container-md">
+                  <br>
+                  <div>
+                    <div class="row">
+                      <div>
+                          <form action="/nafldkb/search/" method="get">
+                              {% csrf_token %}
+                              <div class="input-group input-group-lg">
+                                  <input id="input_id" class="form-control" name="searchterm" placeholder="Search anything about NAFLD" onkeydown="entersearch()">
+                                  <button class="btn btn-primary" type="submit">Search</button>
+                              </div>
+                          </form>
+                      </div>
+                    </div>
+                    <br>
+                    <form action="/search/" method="post">
+                      {% csrf_token %}
+                      <div class="col-md-12" id="exp">
+                          <span class="help-block text-center">e.g.,
+                              <a href="/nafldkb/search?searchterm=Saroglitazar">Saroglitazar</a>;
+                              <a href="/nafldkb/search?searchterm=Resmetirom">Resmetirom</a>;
+                              <a href="/nafldkb/search?searchterm=Pioglitazone">Pioglitazone</a>;
+                              <a href="/nafldkb/search?searchterm=PPAR">PPAR</a>;
+                              <a href="/nafldkb/search?searchterm=FXR">FXR</a>;
+                              <a href="/nafldkb/search?searchterm=fibrosis">Fibrosis</a>;
+                              <a href="/nafldkb/search?searchterm=Insulin resistance">Insulin resistance</a>;
+                              <a href="/nafldkb/search?searchterm=NCT03639623">NCT03639623</a>;
+                              <a href="/nafldkb/search?searchterm=Diabetes mellitus">Diabetes mellitus</a>;
+                              <a href="/nafldkb/search?searchterm=Silybum marianum"><i>Silybum marianum</i></a>
+                          </span>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                  <br>
+                  <h5>2. Browse data by category</h5>
+                    <p style="text-align:justify;">All data records of <a href="/nafldkb/"><b>NAFLDkb</b></a> can be browsed by clicking individual entrances below the “Knowledge Base Curation” on the Home Page or the navigation bar for each category. There are filters to help users find and work with a specific subset of the data records according to their own concerns. Data entities and research articles are associated with each other in <a href="/nafldkb/"><b>NAFLDkb</b></a> with knowledge graphs in <b>Details</b>.</p>
+                  <p style="text-align:center;"><img src="{% static 'images/about/browse.png' %}" width="80%"></p>
+                  <p style="text-align:center;"><img src="{% static 'images/about/browse-kg.png' %}" width="80%"></p>
+                  <br>
+                  <h5>3. Structure search</h5>
+                  <p style="text-align:justify;">The <a href="/nafldkb/structure">Structure Search</a> function on the <b>"Tools" Page</b> provides “Exact”, “Substructure” and “Similarity” chemical structure search of small molecule compounds in each data field. Options can be set when use “Similarity” search, and rough query on large data field may take a while.</p>
+                  <p style="text-align:center;"><img src="{% static 'images/about/structure.png' %}" width="80%"></p>
+                  <br>
+                  <h5>4. Druglikeness screening</h5>
+                  <p style="text-align:justify;">The <a href="/nafldkb/screening">Druglikeness Screening</a> function on the <b>"Tools" Page</b> provides a screening tool of bioactive compounds and natural products based on calculated properties. Lipinski Rules of Five parameters and QED（quantitative estimate of drug-likeness）values can be set for customized screening. The screening criteria “Associated NAFLD Targets” refers to the number of therapeutic targets associated with individual bioactive compounds, and the criteria would automatically change to “Associated NAFLD Drugs” when “Natural Products” was selected in the Search Field, which refers to the number of investigational drugs (i.e, herbal medicines) associated with individual natural products. </p>
+                  <p style="text-align:center;"><img src="{% static 'images/about/screen.png' %}" width="80%"></p>
+                  <br>
+                  <h5>5. Knowledge-based repositioning</h5>
+                  <p style="text-align:justify;">The <a href="/nafldkb/reposition">Knowledge-based Repositioning</a> function on the <b>"Tools" Page</b> provides knowledge-based drug repositioning analysis for NAFLD. Users can click the “Add Association Node” button and “Remove Node” button and set up customized <b>Association Nodes</b> to build a knowledge-based repositioning model. Click “Reposition” button to match the query with repositioning candidates in <a href="/nafldkb/"><b>NAFLDkb</b></a>, and the result will be provided with knowledge graphs and data tables if hit. Users are encouraged to explore the results by clicking the “Details” button.</p>
+                  <p style="text-align:center;"><img src="{% static 'images/about/reposition.png' %}" width="80%"></p>
+                  <br>
+                  <h5>6. Case study</h5>
+                  <p style="text-align:justify;">The <a href="/nafldkb/casestudy">Case Study</a> page shows an application example of drug repositioning using <a href="/nafldkb/"><b>NAFLDkb</b></a> where 137 novel lead-like compounds and 3 repositioning candidates for NAFLD were newly established.</p>
+                  <br>
+                  <h5>7. Data download and use</h5>
+                  <p style="text-align:justify;">All data of <a href="/nafldkb/"><b>NAFLDkb</b></a> can be downloaded freely at each data result of browse, search, filter, analysis or by category at the <a href="/nafldkb/downloads"><b>"Downloads" Page</b></a>, and used as review materials, drug research and development for NAFLD or other related metabolic diseases. </p>
+                  <br>
+                </div>
+              </div>
+          </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+</html>

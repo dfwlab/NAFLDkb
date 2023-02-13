@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+            <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+                  <h4 class="text-center">Chemical Structure Search</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-light mt-3 p-1 shadow-sm">
+           <div class="card-body">
+              <div class="row">
+               <div class="col-md-8 col-sm-12 border" style="min-height: 650px">
+                 {% load static %}
+                <iframe id="ifKetcher" scrolling="no" src="{% static 'plugins/ketcher/index.html' %}" style="height: 100%; width: 100%;"></iframe>
+               </div>
+               <div class="col-md-4 col-sm-12">
+                <div class="structure-options mt-3">
+                 <h5>Search Type:</h5>
+                <fieldset>
+                 <div class="form-group">
+                  <div class="form-check form-check-inline">
+                   <label class="form-check-label pl-1" for="type_exact"><input type="radio" name="search_type" id="type_exact" value="exact" class="form-check-input" checked="checked">Exact </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                   <label class="form-check-label" for="type_substructure"><input type="radio" name="search_type" id="type_substructure" value="substructure" class="form-check-input">Substructure </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                   <label class="form-check-label" for="type_similarity"><input type="radio" name="search_type" id="type_similarity" value="similarity" data-similarity="true" class="form-check-input">Similarity </label>
+                  </div>
+                 </div>
+                    <hr>
+                 <div class="form-row">
+                  <div class="col-md-8">
+                      <h5>Similarity Options:</h5>
+                   <div class="form-group" id="fingerprints-type">
+                    <label for="fingerprints">Fingerprints Type</label>
+                    <select name="fingerprints" id="fingerprints" class="form-select" disabled><option>RDKit Fingerprints</option><option>MACCS Keys</option><option>Morgan Fingerprints</option></select>
+                   </div>
+                     <div class="form-group" id="similarity-metrics">
+                        <label for="metrics">Similarity Metrics</label>
+                        <select name="metrics" id="metrics" class="form-select" disabled><option>Tanimoto Similarity</option><option>Dice Similarity</option></select>
+                    </div>
+                  </div>
+                     <div class="col-md-12">
+                     <div class="form-group" id="similarity-option">
+                         <label for="similarity">Similarity threshold</label>
+                         <div class="similarity">0.9</div>
+                         <input name="similarity" type="range" class="form-range" min="0.05" max="0.95" step="0.05" value="0.9" id="similarity"disabled >
+                   </div>
+                  </div>
+                 </div>
+                    <hr>
+                 <div class="form-group">
+                     <h5>Search Field:</h5>
+                    <select name="field" id="field" class="form-select"><option value="NAFLD Therapy Agents">Investigational Drugs</option><option value="Drug Candidates">Repositioning Candidates</option><option>Bioactive Compounds</option><option>CMap Candidates</option><option>Natural Products</option></select>
+                 </div>
+                </fieldset>
+                </div>
+                   <hr>
+                    <div class="search-actions mt-2">
+                 <button name="button" id="searchsubmit" class="btn btn-primary">Search</button>
+                        <a data-bs-toggle="tooltip" title="Rough query on large data field may take a while."><svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#info"></use></svg></a>
+                     <hr>
+                        <div id="result_tip" style="display: none"><strong id="results_num">0</strong> Results found!</div>
+                </div>
+               </div>
+              </div>
+           </div>
+          </div>
+            <br>
+          <div class="dataTables_scroll" id="drugs" style="display: none" >
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                  <tr role="row">
+                        <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Drug ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Drug Name</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Type</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">DrugBank ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Targets</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Category</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Latest Progress</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                  </tr>
+                </thead>
+                <tbody id="drug_results" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+          <div class="dataTables_scroll" id="candidates" style="display: none" >
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                  <tr role="row">
+                        <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Candidate ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source Type</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound Type</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Candidate Name</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Inclusion Criteria</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                  </tr>
+                </thead>
+                <tbody id="candidate_results" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+          <div class="dataTables_scroll" id="cmap" style="display: none" >
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                    <tr role="row">
+                          <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">CMap ID</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Pert ID</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound Name</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Targets</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">MoA</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound Aliases</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                    </tr>
+                </thead>
+                <tbody id="cmap_results" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+          </div>
+          <div class="dataTables_scroll" id="products" style="display: none" >
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                    <tr role="row">
+                          <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Product ID</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Product Name</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">CAS No</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Category</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Biological Source</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Associated NAFLD Therapy</th>
+                          <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                    </tr>
+                </thead>
+                <tbody id="product_results" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+          <div class="dataTables_scroll" id="compounds" style="display: none" >
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                  <tr role="row">
+                        <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source Type</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Compound Name</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Weight</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Formula</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Molecular Species</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                  </tr>
+                </thead>
+                <tbody id="compound_results" class="text-center">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+    <script>
+    $('#searchsubmit').click(function () {
+        document.getElementById("searchsubmit").innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Searching...'
+        $('#searchsubmit').attr("disabled");
+        $('#result_tip').attr("style", "display: none");
+        $('#drugs').attr("style", "display: none");
+        $('#candidates').attr("style", "display: none");
+        $('#cmap').attr("style", "display: none");
+        $('#products').attr("style", "display: none");
+        $('#compounds').attr("style", "display: none");
+        var ifketcher = document.getElementById('ifKetcher');
+        var ketcher = ifketcher.contentWindow.document.getElementById('ifKetcher').contentWindow.ketcher;
+        var type = '';
+        var fingerprints = '';
+        var metrics = '';
+        var similarity = '';
+        var field = $('#field').val()
+        var HTML = ''
+        if (document.getElementById('type_exact').checked) {
+            type = 'exact'
+        }
+        else if (document.getElementById('type_substructure').checked) {
+            type = 'substructure'
+        }
+        else if (document.getElementById('type_similarity').checked) {
+            type = 'similarity'
+            fingerprints = $('#fingerprints').val()
+            metrics = $('#metrics').val()
+            similarity = $('#similarity').val()
+        }
+        ketcher.getSmiles().then((smi)=>{ //getMolfile; getSmiles
+            $.ajax({
+                url:'structure_search',
+                type:'get',
+                {#data:{'type':'', 'smi':'', 'fp':'', 'mt':'', 'si':'', 'fd':''},#}
+                data:{'type':type, 'smi':smi, 'fp':fingerprints, 'mt':metrics, 'si':similarity, 'fd':field},
+                success:function (args) {
+                    {#alert(args)#}
+                    document.getElementById("results_num").innerHTML = args.num
+                    $('#result_tip').removeAttr("style")
+                    $('#searchsubmit').removeAttr("disabled")
+                    document.getElementById("searchsubmit").innerHTML = 'Search'
+                    if (args.num>0) {
+                        if (field== 'NAFLD Therapy Agents') {
+                           for (var i = 0; i <= args.num - 1; i++) {
+                                if (type == 'similarity') {
+                                   HTML = HTML + "<tr><td>D" + String(args.rows[i][0]).padStart(3, "0") + "<br>Similarity: " + args.rows[i][7] + "</td><td>"
+                                }
+                                else {
+                                    HTML = HTML + "<tr><td>D" + String(args.rows[i][0]).padStart(3, "0") + "</td><td>"
+                                }
+                                HTML = HTML + args.rows[i][1] + "</td><td>" + args.rows[i][2] + "</td><td>"
+                                HTML = HTML + args.rows[i][3] + "</td><td>" + args.rows[i][4] + "</td><td>"
+                                HTML = HTML + args.rows[i][5] + "</td><td>" + args.rows[i][6] + "</td><td>"
+                                HTML = HTML + "<a href=\"/nafldkb/drug_details?id=" + args.rows[i][0] + "\">Details</a></td></tr>"
+                           }
+                           document.getElementById("drug_results").innerHTML = HTML
+                           $('#drugs').removeAttr("style")
+                        } else if (field == 'Drug Candidates') {
+                           for (var i = 0; i <= args.num - 1; i++) {
+                                if (type == 'similarity') {
+                                   HTML = HTML + "<tr><td>R" + String(args.rows[i][0]).padStart(4, "0") + "<br>Similarity: " + args.rows[i][6] + "</td><td>"
+                                }
+                                else {
+                                    HTML = HTML + "<tr><td>R" + String(args.rows[i][0]).padStart(4, "0") + "</td><td>"
+                                }
+                                HTML = HTML + args.rows[i][1] + "</td><td>" + args.rows[i][2] + "</td><td>"
+                                HTML = HTML + args.rows[i][3] + "</td><td>" + args.rows[i][4] + "</td><td>"
+                                HTML = HTML + args.rows[i][5] + "</td><td>"
+                                HTML = HTML + "<a href=\"/nafldkb/candidate_details?id=" + args.rows[i][0] + "\">Details</a></td></tr>"
+                           }
+                           document.getElementById("candidate_results").innerHTML = HTML
+                           $('#candidates').removeAttr("style")
+                        } else if (field == 'Bioactive Compounds') {
+                           for (var i = 0; i <= args.num - 1; i++) {
+                                if (type == 'similarity') {
+                                   HTML = HTML + "<tr><td>B" + String(args.rows[i][0]).padStart(6, "0") + "<br>Similarity: " + args.rows[i][7] + "</td><td>"
+                                }
+                                else {
+                                    HTML = HTML + "<tr><td>B" + String(args.rows[i][0]).padStart(6, "0") + "</td><td>"
+                                }
+                                HTML = HTML + args.rows[i][1] + "</td><td>" + args.rows[i][2] + "</td><td>"
+                                HTML = HTML + args.rows[i][3] + "</td><td>" + args.rows[i][4] + "</td><td>"
+                                HTML = HTML + args.rows[i][5] + "</td><td>" + args.rows[i][6] + "</td><td>"
+                                HTML = HTML + "<a href=\"/nafldkb/compound_details?id=" + args.rows[i][0] + "\">Details</a></td></tr>"
+                           }
+                           document.getElementById("compound_results").innerHTML = HTML
+                           $('#compounds').removeAttr("style")
+                        } else if (field == 'CMap Candidates') {
+                           for (var i = 0; i <= args.num - 1; i++) {
+                                if (type == 'similarity') {
+                                   HTML = HTML + "<tr><td>C" + String(args.rows[i][0]).padStart(5, "0") + "<br>Similarity: " + args.rows[i][6] + "</td><td>"
+                                }
+                                else {
+                                    HTML = HTML + "<tr><td>C" + String(args.rows[i][0]).padStart(5, "0") + "</td><td>"
+                                }
+                                HTML = HTML + args.rows[i][1] + "</td><td>" + args.rows[i][2] + "</td><td>"
+                                HTML = HTML + args.rows[i][3] + "</td><td>" + args.rows[i][4] + "</td><td>"
+                                HTML = HTML + args.rows[i][5] + "</td><td>"
+                                HTML = HTML + "<a href=\"/nafldkb/cmap_details?id=" + args.rows[i][0] + "\">Details</a></td></tr>"
+                           }
+                           document.getElementById("cmap_results").innerHTML = HTML
+                           $('#cmap').removeAttr("style")
+                        } else if (field == 'Natural Products') {
+                           for (var i = 0; i <= args.num - 1; i++) {
+                                if (type == 'similarity') {
+                                   HTML = HTML + "<tr><td>N" + String(args.rows[i][0]).padStart(5, "0") + "<br>Similarity: " + args.rows[i][6] + "</td><td>"
+                                }
+                                else {
+                                    HTML = HTML + "<tr><td>N" + String(args.rows[i][0]).padStart(5, "0") + "</td><td>"
+                                }
+                                HTML = HTML + args.rows[i][1] + "</td><td>" + args.rows[i][2] + "</td><td>"
+                                HTML = HTML + args.rows[i][3] + "</td><td>" + args.rows[i][4] + "</td><td>"
+                                HTML = HTML + args.rows[i][5] + "</td><td>"
+                                HTML = HTML + "<a href=\"/nafldkb/product_details?id=" + args.rows[i][0] + "\">Details</a></td></tr>"
+                           }
+                           document.getElementById("product_results").innerHTML = HTML
+                           $('#products').removeAttr("style")
+                        }
+                    }
+                }
+            })
+        })
+    })
+    $('#type_similarity').click(function () {
+        $('#fingerprints').removeAttr("disabled")
+        $('#metrics').removeAttr("disabled")
+        $('#similarity').removeAttr("disabled")
+    })
+    $('#type_exact').click(function () {
+        $('#fingerprints').attr('disabled',"disabled")
+        $('#metrics').attr('disabled',"disabled")
+        $('#similarity').attr('disabled',"disabled")
+    })
+    $('#type_substructure').click(function () {
+        $('#fingerprints').attr('disabled',"disabled")
+        $('#metrics').attr('disabled',"disabled")
+        $('#similarity').attr('disabled',"disabled")
+    })
+    $( document ).ready(function() {
+        $('#similarity').on('input', function(){
+             v = $('#similarity').val();
+             // console.log(v);
+             $('div.similarity').text(v);
+        });
+    });
+    </script>
+  </body>
+</html>

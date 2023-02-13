@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+          <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+                  <h4 class="text-center">NAFLDkb: a knowledge base and platform for drug development against non-alcoholic fatty liver disease</h4>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-light rounded">
+          <div class="container">
+                <div class="col">
+                  {% load static %}
+                  <h5>Introduction</h5>
+                  <p style="text-align:justify;">Non-Alcoholic Fatty Liver Disease (NAFLD), also known as Metabolic Associated Fatty Liver Disease (MAFLD), is defined as ectopic lipid accumulation in the liver in the absence of excessive alcohol intake or other attributable causes. The pathological spectrum of NAFLD ranges from simple hepatic steatosis to non-alcoholic steatohepatitis (NASH) and cirrhosis. The global prevalence of the disease is estimated as high as 25% of the general population and 30% among adults, and it is alarming that the prevalence of NAFLD worldwide is predicted to be on a rapid rise in the coming decades according to epidemiologic studies. NAFLD is linked to several extrahepatic comorbidities, such as obesity, type 2 diabetes mellitus (T2DM), cardiovascular disease (CVD), chronic kidney disease (CKD), etc. Although accumulating researches have significantly advanced our understanding of its molecular pathogenesis, the present therapeutic options against NAFLD are still limited. Despite a crowded clinical landscape of drug development for NAFLD, there are no Food and Drug Administration (FDA)-approved pharmacotherapies up to now.</p>
+                  <p style="text-align:justify;">Here we present <a href="/nafldkb/"><b>NAFLDkb</b></a>, a knowledge base and platform for drug development against NAFLD. <a href="/nafldkb/"><b>NAFLDkb</b></a> integrates diverse data from drug-related databases and other resources including <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a> (2022-7-15), clinical trial registration authorities (2022-4-9), <a href="https://disease-ontology.org/" target="_blank">Disease Ontology</a> (2022-3-21), <a href="https://www.uniprot.org/" target="_blank">UniProt</a> (Release 2022_02), <a href="https://adisinsight.springer.com/" target="_blank">AdisInsight</a> (2022-5-6), <a href="https://go.drugbank.com/" target="_blank">DrugBank</a> (VERSION 5.1.8), <a href="https://www.ebi.ac.uk/chembl/" target="_blank">ChEMBL</a> (Release 30.0), <a href="http://www.organchem.csdb.cn/scdb/NPBS/" target="_blank">NPBS Database</a> (VERSION 1.0), <a href="https://www.ncbi.nlm.nih.gov/geo/" target="_blank">Gene Expression Omnibus</a> (2022-4-29) and <a href="https://clue.io/" target="_blank">CLUE</a> (DATA VERSION: Beta / SOFTWARE VERSION: 1.1.1.43). We extracted and annotated NAFLD-related pathogenesis, <I>in vitro</I> & <I>in vivo</I> models, therapeutic strategies, targets, associated diseases and investigational drugs from published articles and clinical trial registrations as background knowledge of <a href="/nafldkb/"><b>NAFLDkb</b></a>. Repositioning candidates, bioactive compounds, CMap candidates and natural products were then derived from related databases as the candidate library for drug development against NAFLD. Drug-like properties and connectivity scores were calculated by <a href="http://www.rdkit.org/">RDKit</a> and <a href="https://clue.io/query">ConnectivityMap</a> as the foundation of druglikeness screening and knowledge-based drug repositioning for NAFLD. All entities and research articles involved in <a href="/nafldkb/"><b>NAFLDkb</b></a> were automatically linked to associate with each other, providing knowledge graphs. </p>
+                  <p style="text-align:center;"><img src="{% static 'images/about/map.png' %}" width="80%"></p>
+                    <p style="text-align:justify;">The first version of <a href="/nafldkb/"><b>NAFLDkb</b></a> systematically collects NAFLD-related <a href="/nafldkb/strategies">therapeutic strategies</a>, <a href="/nafldkb/targets">therapeutic targets</a>, <a href="/nafldkb/drugs">investigational drugs</a>, <a href="/nafldkb/articles">research articles</a>, <a href="/nafldkb/candidates">repositioning candidates</a>, <a href="/nafldkb/compounds">bioactive compounds</a>, <a href="/nafldkb/candidates">CMap candidates</a>, <a href="/nafldkb/products">natural products</a> and <a href="/nafldkb/diseases">associated diseases</a> from multiple public databases and other sources, all of which are freely accessible with individual detail pages and knowledge graphs. Further, a suite of tools for easier utilization and expansion is implemented, including <a href="/nafldkb/structure">structure search</a>, <a href="/nafldkb/screening">druglikeness screening</a>, and <a href="/nafldkb/reposition">knowledge-based repositioning</a>. </p>
+                    <p style="text-align:justify;">The ultimate goal of <a href="/nafldkb/"><b>NAFLDkb</b></a> is to convey the rich knowledge and provide knowledge-based analytic tools towards NAFLD drug development, and future updates will focus on these two aspects. To serve the wide research community, drug-related omics data, including pharmaco-genomics, -proteomics, -transcriptomics, -metabolomics, -kinetics, -dynamics data deposited in public resources will be integrated and web-based analytic tools for investigating them will be provided. Other in-depth tools for virtual screening, drug repositioning, and structure generation will also be developed. Moreover, as artificial intelligence (AI) offers powerful tools for knowledge management and knowledge-based agents, leading to a cascade of breakthroughs, AI-based optimization is also expected. We will regularly update NAFLDkb with the latest discoveries and cutting-edge tools.</p>
+                    <p style="text-align:center;"><img src="{% static 'images/about/stages.png' %}" width="50%"></p>
+                    <p style="text-align:justify;">If you encounter any errors when using <a href="/nafldkb/"><b>NAFLDkb</b></a>, or have other feedbacks, please contact us at <a href="Mailto:dfw_bioinfo@126.com">dfw_bioinfo@126.com</a>. Your comments and suggestions are welcome!</p>
+                    <p style="text-align:justify;">For more information about core developer team, please see <a href="https://cadd.tongji.edu.cn/">cadd.tongji.edu.cn</a>.</p>
+                  <br>
+                </div>
+              </div>
+          </div>
+        </main>
+      </div>
+  {% include "footer.html" %}
+  </body>
+</html>

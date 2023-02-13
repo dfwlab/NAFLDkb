@@ -1,0 +1,69 @@
+Model_ID	Category	Class	Type	Model_Name	Description	Source	Reference
+1	In vitro	Cell line	Tumor-derived cell line	HepG2	Human hepatocellular carcinoma cell line	Human	26126685
+2	In vitro	Cell line	Tumor-derived cell line	HepG2/C3A	Clonal derivative of HepG2	Human	18539427
+3	In vitro	Cell line	Tumor-derived cell line	HepaRG	Human hepatocellular carcinoma cell line	Human	30307041
+4	In vitro	Cell line	Primary cell line	L02	Human fetal liver cell line	Human	23498809
+5	In vitro	Cell line	Tumor-derived cell line	Huh7	Human hepatocellular carcinoma cell line	Human	30098284
+6	In vitro	Cell line	Tumor-derived cell line	Hepa1c1c7	Mouse hepatocellular carcinoma cell line	Mouse	17110078
+7	In vitro	Cell line	Primary cell line	AML-12	Mouse liver cell line	Mouse	7904757
+8	In vitro	Cell line	Tumor-derived cell line	Hepa1-6	Mouse carcinoma cell line	Mouse	33006712
+9	In vitro	Cell line	Primary cell line	RAW264.7	Mouse monocyte/macrophage-like cells	Mouse	25130606
+10	In vitro	Cell line	Primary cell line	Bone marrow-derived macrophages	Mouse primary macrophage cells	Mouse	21356739
+11	In vitro	Cell line	Primary cell line	LX-2	Hepatic stellate cells (HSCs) from normal liver	Human	17289342
+12	In vitro	Cell line	Primary cell line	T6 stellate cells	Rat primary HSCs from liver cell line	Rat	17289342
+13	In vitro	Cell line	Primary cell line	Primary cell lines	Primary hepatocytes; Primary KC; Primary HSC	Human	30098284
+14	In vitro	Cell line	Primary cell line	3T3-L1 MBX	Mouse fibroblast	Mouse	30905315
+15	In vitro	Cell line	Primary cell line	3T3-J2	Embryonic mouse fibroblast	Mouse	33590212
+16	In vitro	Cell line	Primary cell line	Liver sinusoidal endothelial cells (LSEC)	Primary human cell line	Human	30307041
+17	In vitro	Cell line	Primary cell line	Human umbilical vein endothelial cells (HUVEC)	Human non-pathological tissue	Human	30307041
+18	In vitro	Cell line	Tumor-derived cell line	Caco-2	Human epithelial cells from colorectal adenocarcinoma	Human	30277794
+19	In vitro	Cell line	Primary cell line	NCTC-1469	Mouse NPC from liver cell line	Mouse	20807545
+20	In vitro	Cell line	Pluripotent stem cell	Pluripotent stem cells (PSC)	Stem cells that can differentiate into endoderm, mesoderm or ectoderm	Human	33374435
+21	In vitro	Cell culture	Monoculture	Hepatocyte-like cells	Hepatocyte-like cells (HLCs) derived from human embryonic stem cells	Human	29786565
+22	In vitro	Cell culture	Monoculture	Human pluripotent stem cell	Human pluripotent stem cell (hPSC)-derived model of hepatic steatosis	Human	33409477
+23	In vitro	Cell culture	Co-culture	Huh7/LX-2	Co-culture of the human hepatocyte cell line (HuH7) and HSC cells (LX2)	Human	26187275
+24	In vitro	Cell culture	Co-culture	Macrophages	Co-cultures including macrophages	Human	30824190
+25	In vitro	Cell culture	Co-culture	hiPSC-Hep	Co-cultures of human induced pluripotent stem cell-derived hepatocytes (hiPSC-Hep)	Human	30254132
+26	In vitro	Cell culture	Collagen gel sandwich	Hepatic collagen gel sandwich	Extended primary culture of human hepatocytes in a collagen gel sandwich system	Human	9201515
+27	In vitro	Tissue culture	Spheroid	HepG2 spheroid	Fat-loaded HepG2 spheroids	Human	17211854
+28	In vivo	Animal	Monkey	Aged rhesus monkeys	Rhesus monkeys with and without metabolic syndrome (MetS)	Monkey	30214501
+29	In vitro	Tissue culture	Spheroid	PHH spheroid	Primary human hepatocytes (PHH) from different donors were cultured as spheroid microtissues in physiological in vivo -like culture conditions	Human	30250238
+30	In vitro	Tissue culture	Spheroid	Hetero-cellular spheroid	Comprised of primary human hepatocytes (PHH) co-cultured with crude fractions of primary human liver non-parenchymal cells (NPC) from several matched or non-matched donors	Human	32295224
+31	In vitro	Tissue culture	Spheroid	3D PHH spheroid	Co-cultured PHH-based spheroids with KC, HSC, and biliary cells	Human	27143246
+32	In vitro	Tissue culture	Spheroid	Multicellular spheroid	Consisted of lipid-loaded monolayer cultures of hepatocytes (Hepa1-6) and macrophages (RAW264.7)	Human	33006712
+33	In vitro	Tissue culture	Spheroid	HepG2-HSC spheroid	Depleted LPIAT1 in cultured human hepatic cells using CRISPR-Cas9 systems or siRNA	Human	32253259
+34	In vitro	Tissue culture	Spheroid	HepG2-LX-2 spheroid	multilineage 3D spheroids composed by hepatocytes (HepG2) and hepatic stellate cells (LX-2) with a physiological ratio (24:1)	Human	30986904
+35	In vitro	Tissue culture	Organoid	Murine organoid	Liver organoids from different degrees [defined as mild (NASH A), moderate (NASH B) and severe (NASH C)] of methionine- and choline-deficient diet-induced NASH model mice	Mouse	32044522
+36	In vitro	Tissue culture	Organoid	Human organoid	Multi-cellular human liver organoids composed of hepatocyte-, stellate-, and Kupffer-like cells that exhibit transcriptomic resemblance to in vivo-derived tissues	Human	31155493
+37	In vitro	Tissue culture	Organoid	iPSC-derived cryopreservable hepatocytes	Co-cultured with physiologically-relevant ratios of isogenic HSC-like and Kupffer-like cells on collagen-coated ultra-low binding plates	Human	33268331
+38	In vitro	Tissue culture	Organoid	Bipotent ductal organoid	End-stage NASH patient liver explants, with normal donor livers as controls	Human	33901295
+39	In vitro	Tissue culture	Organoid	Human pluripotent stem cell-derived organoid	H1 human embryonic stem cells (WA-01, passage 27-40) and induced pluripotent stem cells (GM23338) with a series of chemically defined and serum-free media to induce formation of posterior foregut cells, which were differentiated in 3 dimensions into hepatic endoderm spheroids and stepwise into hepatoblast spheroids	Human	32553762
+40	In vitro	Tissue culture	Organoid	hiPSCs organoid	Hepatic organoids from human induced pluripotent stem cells (hiPSCs) using short exposure to nonengineered matrices	Human	32923835
+41	In vitro	Tissue culture	Liver-on-a-chip	Microfluidic device	HepG2 cells were cultured into a microfluidically perfused device under free fatty acid (FFA) supplementation, namely palmitic and oleic acid, for 24h and 48h.	Human	27438262
+42	In vitro	Tissue culture	Liver-on-a-chip	Human liver	Coculturing human hepatocytes, umbilical vein endothelial cells (HUVECs), and Kupffer cells (KCs) into spheroids	Human	31746151
+43	In vitro	Tissue culture	Liver-on-a-chip	Multicellular liver microtissues	Composed of four major types of liver cells (hepatocytes, endothelial cells, Kupffer cells, and stellate cells) to implement a human hepatic fibrosis model driven by NAFLD: i) lipid accumulation in hepatocytes (steatosis), ii) neovascularization by endothelial cells, iii) inflammation by activated Kupffer cells (steatohepatitis), and iv) extracellular matrix deposition by activated stellate cells (fibrosis).	Human	33690979
+44	In vitro	Tissue culture	Liver-on-a-chip	NASH-on-a-chip	Four main types of human primary liver cells (hepatocytes [HCs], Kupffer cells, liver sinusoidal endothelial cells, and hepatic stellate cells [HSCs]) were cocultured under microfluidic dynamics.	Human	33553970
+45	In vitro	Tissue culture	Liver-on-a-chip	Microphysiological system	Human in vitro co-culture NASH model using primary human hepatocytes, Kupffer cells and hepatic stellate cells, which are cultured together as microtissues in a perfused three-dimensional microphysiological system (MPS).	Human	31909357
+46	In vitro	Tissue culture	Body-on-a-chip	Gut-liver on a chip	A conventional in vitro model for hepatic steatosis uses a liver cell culture, treated with fatty acids and measures accumulation of lipids within the cells.	Human	29981260
+47	In vitro	Tissue culture	Body-on-a-chip	Human-on-a-chip	Human-on-a-chip model composed of human hepatocytes and adipose tissue chambers capable of modeling the metabolic factors that contribute to liver disease development and progression, and evaluation of the therapeutic metformin.	Human	34162924
+48	In vitro	Tissue culture	Bio-print	Human liver tissue	Scaffold-free 3D bio-printing technology to construct a small portion of liver tissue	Human	28955746
+49	In vitro	Tissue culture	Bio-print	Primary liver tissue	Bioprinted human liver tissue mimetics comprised of patient-derived hepatocytes and non-parenchymal cells in a defined architecture.	Human	27387377
+50	In vivo	Animal	Dietary mouse	High-fat diet feeding	A stable isogenic cross between C57BL/6J (B6) and 129S1/SvImJ (S129) mice were fed a high fat diet with ad libitum consumption of glucose and fructose in physiologically relevant concentrations and compared to mice fed a chow diet and also to both parent strains.	Mouse	27261415
+51	In vivo	Animal	Dietary mouse	Fast-food diet feeding	"A diet on the basis of the composition of ""fast food"" (high saturated fats, cholesterol, and fructose). Mice (n = 8 in each group) were assigned to diets as follows: 1) standard chow (SC), i.e., 13% energy as fat [1% saturated fatty acids (SFA)], 2) high fat (HF), i.e., 60% energy as fat (1% SFA), and 3) fast food (FF), i.e., 40% energy as fat (12% SFA, 2% cholesterol)."	Mouse	21836057
+52	In vivo	Animal	Dietary mouse	Methionine-choline-deficient (MCD) diet feeding	Male C57BL/6 mice were fed an MCD diet for 30 weeks. A recovery model was also established wherein a normal control diet was provided for 2 weeks after a period of 8, 16, or 30 weeks.	Mouse	24294355
+53	In vivo	Animal	Dietary mouse	Choline-deficient, ethionine-supplemented (CDE) dietary	Separately administering choline-deficient chow and ethionine in the drinking water (CD+E diet)	Mouse	26496771
+54	In vivo	Animal	Dietary mouse	Choline-deficient L-amino acid-defined (CDAA) diet	Choline-deficient diet in which proteins are replaced with an equimolar mixture of L-amino acids	Mouse	16931074
+55	In vivo	Animal	Dietary mouse	STAM	Neonatal male mice exposed to low-dose streptozotocin (STZ) developed liver steatosis with diabetes 1 week after feeding high-fat diet (HFD)	Mouse	23430399
+56	In vivo	Animal	Genetic mouse	ob/ob Mice (Leptin deficiency)	leptin-deficient obese (Lep(ob)/Lep(ob)) mouse	Mouse	11914033
+57	In vivo	Animal	Genetic mouse	db/db Mice (Leptin receptor deficiency)	db/db mice and the corresponding lean and nondiabetic db/m mice were fed a diet deficient in methionine and choline (MCD diet) or control diet for 4 wk. Leptin-deficient obese and diabetic ob/ob mice fed similar diets were used for comparison.	Mouse	15256362
+58	In vivo	Animal	Genetic mouse	Mc4r-Deficient Mice	Melanocortin 4 receptor-deficient mice (MC4R-KO)	Mouse	21906580
+59	In vivo	Animal	Genetic mouse	Srebp1c-Overexpressing Mice	Liver-specific transgenic (Tg) mice overexpressing the active form of sterol response element binding protein-1c (SREBP-1c) fed a high-fat and fructose diet (HFFD)	Mouse	24129399
+60	In vivo	Animal	Genetic mouse	FATZO Mice	Male FATZO mice at the age of 8 weeks were fed with high fat Western diet (D12079B) supplemented with 5% fructose in the drinking water (WDF) for the duration of 20 weeks.	Mouse	30885145
+61	In vivo	Animal	Genetic mouse	KK-Ay/a Mice	Male KK-A(y) mice and C57Bl/6 mice were fed an MCD diet for up to 8 weeks	Mouse	16920398
+62	In vivo	Animal	Genetic mouse	Phosphatase and Tensin Homolog (PTEN) Null Mice	Hepatocyte-specific null mutation of Pten in mice (AlbCrePten(flox/flox) mice)	Mouse	15199412
+63	In vivo	Animal	Genetic mouse	Peroxisome Proliferator-Activated Receptor α (PPARα) Null Mice	Adult mice lacking PPARalpha (PPARalpha-/-)	Mouse	10377439
+64	In vivo	Animal	Genetic mouse	Acyl-coenzyme A Oxidase (AOX) Null Mice	Homozygous (ACOX -/-) mice lacked the expression of ACOX protein and accumulate very long chain fatty acids in blood.	Mouse	8798738
+65	In vivo	Animal	Genetic mouse	Methionine Adenosyl Transferase (MAT1A) Null Mice	MAT1A mRNA and protein levels were absent in homozygous knockout mice	Mouse	11320206
+66	In vivo	Animal	Minipig	Göttingen Minipigs	Castrated male Göttingen Minipigs were fed either chow (n = 5) or one of the three NASH diets: FFC (n = 5), CDAHFD with sucrose (CDAHFD-S; n = 4), or fructose (CDAHFD-F; n = 4) for 8 weeks.	Swine	32405177
+67	In vivo	Animal	Minipig	Ossabaw Island (Ossabaw pigs)	Ossabaw pigs were fed standard chow (controls, n = 15), high-fructose diet (20% kcal from fructose and 10.5% kcal from fat) (fructose group, n = 9), atherogenic diet (20% kcal from fructose and 46% kcal from fat and 2% cholesterol and 0.7% cholate by weight) (atherogenic diet group, n = 13), and modified atherogenic diet (different source of fat and higher protein but lower choline content) (M-Ath diet group, n = 7).	Swine	19434740
+68	In vivo	Animal	Rabbit	Rabbit	Feeding rabbits a diet supplemented with 0.75% cholesterol and 12% corn oil.	Rabbit	20489159

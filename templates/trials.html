@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="container-fluid">
+        <main class="container-fluid">
+          <div class="mt-3 p-3">
+        </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+                <h4 class="text-center">Clinical Trials</h4>
+                <p>Registered NAFLD clinical trials from all over the world are integrated from multiple clinical trial registration platforms. Trial details and related drugs are provided.</p>
+                <div class="row" style="height:400px">
+                  <div class="col-md-6" id="stats1">stats1</div><div class="col-md-6" id="stats2">stats2</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-4 p-3 bg-light rounded">
+            <div class="panel-body">
+              <div class="col-md-12">
+              {%if searchterm %}
+                    <h4>Search for: </h4>
+                    <h5 style="color:red"><p></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ searchterm }}</h5>
+              {% else %}
+                  <div class="card-body">
+                    <form  action="/nafldkb/trials/" method="get">
+                      <div class="row justify-content-center">
+                        <div class="col-md-2">
+                          <label>Phases:</label>
+                          <select class="form-select" name="phases">
+                            {%if phases %}
+                                <option selected>{{ phases }}</option><option>All</option><option>Phase 0</option><option>Phase 1</option><option>Phase 2</option><option>Phase 3</option><option>Phase 4</option><option>Not Applicable</option>
+                            {% else %}
+                                <option>All</option><option>Phase 0</option><option>Phase 1</option><option>Phase 2</option><option>Phase 3</option><option>Phase 4</option><option>Not Applicable</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label>Status:</label>
+                          <select class="form-select" name="status">
+                            {%if status %}
+                                <option selected="selected">{{ status }}</option><option>All</option><option>Recruiting</option><option>Completed</option><option>Terminated</option><option>Withdrawn</option><option>Unknown Status</option>
+                            {% else %}
+                                <option>All</option><option>Recruiting</option><option>Completed</option><option>Terminated</option><option>Withdrawn</option><option>Unknown Status</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label>Gender:</label>
+                          <select class="form-select" name="gender">
+                            {%if gender %}
+                                <option selected="selected">{{ gender }}</option><option>All</option><option>Male</option><option>Female</option>
+                            {% else %}
+                                <option>All</option><option>Male</option><option>Female</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label>Age:</label>
+                          <select class="form-select" name="age">
+                            {%if age %}
+                                <option selected="selected">{{ age }}</option><option>All</option><option>Adult</option><option>Older Adult</option><option>Child</option>
+                            {% else %}
+                                </option><option>All</option><option>Adult</option><option>Older Adult</option><option>Child</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-2">
+                          <label>Locations:</label>
+                          <select class="form-select" name="locations">
+                            {%if locations %}
+                                <option selected="selected">{{ locations }}</option><option>All</option><option>United Kingdom</option><option>United States</option><option>China</option><option>India</option><option>Canada</option><option>Japan</option><option>Austria</option><option>Germany</option><option>Iran</option><option>Denmark</option>
+                            {% else %}
+                                <option>All</option><option>United Kingdom</option><option>United States</option><option>China</option><option>India</option><option>Canada</option><option>Japan</option><option>Austria</option><option>Germany</option><option>Iran</option><option>Denmark</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                        <div class="col-md-1">
+                          <label>Filter:</label>
+                          <button type="submit" class="btn btn-light"><svg class="bi pe-none me-2" width="32" height="16"><use xlink:href="#Funnel"></use></svg></button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+              {% endif %}
+                <div><strong>{{ num }}</strong> records.</div>
+              </div>
+            </div>
+          </div>
+          <div class="dataTables_scroll">
+          <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+            <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+              <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                <thead>
+                  <tr role="row">
+                        <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Trial ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Source ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Phases</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Status</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Study Results</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Start Date</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Last Update Posted</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in page_list %}
+                    <tr role="row" class="odd text-center">
+                      <td style="vertical-align: middle"><a href="/nafldkb/trial_details?id={{ row.0 }}">L{{ row.0|stringformat:"04i" }}</a></td>
+                      <td style="vertical-align: middle"><a href="{{ row.7 }}" target="_blank">{{ row.1 }}</a></td>
+                      <td style="vertical-align: middle">
+                        {% if row.2 is None %}
+                        --
+                        {% else %}
+                          {{ row.2 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle">
+                        {% if row.3 is None %}
+                        --
+                        {% else %}
+                          {{ row.3 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle">
+                        {% if row.4 is None %}
+                        --
+                        {% else %}
+                          {{ row.4 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle">
+                        {% if row.5 is None %}
+                        --
+                        {% else %}
+                          {{ row.5 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle">
+                        {% if row.6 is None %}
+                        --
+                        {% else %}
+                          {{ row.6 }}
+                        {% endif %}
+                      </td>
+                      <td style="vertical-align: middle"><a href="/nafldkb/trial_details?id={{ row.0 }}">Details</a></td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+
+              <nav aria-label="...">
+                <ul class="pagination justify-content-center">
+                  {% if second_list_obj.has_previous %}
+                  <li class="page-item"><a class="page-link" href="?searchterm={{ searchterm }}&page={{ second_list_obj.previous_page_number }}">Previous</a></li>
+                  {% else %}
+                  <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                  {% endif %}
+                  
+                  {% if second_list_obj.number > 2 %}
+                  <li class="page-item"><a class="page-link" href="?phases={{ phases }}&status={{ status }}&gender={{ gender }}&age={{ age }}&locations={{ locations }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:-2 }}">{{ second_list_obj.number|add:-2 }} </a></li>
+                  {% endif %}
+                  {% if second_list_obj.number > 1 %}
+                  <li class="page-item"><a class="page-link" href="?phases={{ phases }}&status={{ status }}&gender={{ gender }}&age={{ age }}&locations={{ locations }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:-1 }}">{{ second_list_obj.number|add:-1 }} </a></li>
+                  {% endif %}
+                  <li class="page-item"><a class="page-link" href="?phases={{ phases }}&status={{ status }}&gender={{ gender }}&age={{ age }}&locations={{ locations }}&searchterm={{ searchterm }}&page={{ second_list_obj.number }}">{{ second_list_obj.number }} </a></li>
+                  {% if second_list_obj.number < p.num_pages %}
+                  <li class="page-item"><a class="page-link" href="?phases={{ phases }}&status={{ status }}&gender={{ gender }}&age={{ age }}&locations={{ locations }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:1 }}">{{ second_list_obj.number|add:1 }} </a></li>
+                  {% endif %}
+                  {% if second_list_obj.number < p.num_pages|add:-1 %}
+                  <li class="page-item"><a class="page-link" href="?phases={{ phases }}&status={{ status }}&gender={{ gender }}&age={{ age }}&locations={{ locations }}&searchterm={{ searchterm }}&page={{ second_list_obj.number|add:2 }}">{{ second_list_obj.number|add:2 }} </a></li>
+                  {% endif %}
+
+                  {% if second_list_obj.has_next %}
+                  <li class="page-item"><a class="page-link" href="?phases={{ phases }}&status={{ status }}&gender={{ gender }}&age={{ age }}&locations={{ locations }}&searchterm={{ searchterm }}&page={{ second_list_obj.next_page_number }}">Next</a></li>
+                  {% else %}
+                  <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+
+            </div>
+          </div>
+        </div>
+        </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+  <script>
+    Highcharts.chart('stats1', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Phase'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'Phase',
+            colorByPoint: true,
+            data: [{{ stats_phase|safe }}],
+        }]
+    });
+
+    Highcharts.chart('stats2', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Status'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'Status',
+            colorByPoint: true,
+            data: [{{ stats_status|safe }}],
+        }]
+    });
+      </script>
+</html>

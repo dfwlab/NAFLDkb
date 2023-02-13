@@ -1,0 +1,126 @@
+  <div class="mt-4 p-3 bg-light rounded">
+    <div class="panel-body">
+      <div class="col-md-12">
+        <h4>Search for: </h4>
+        <h5 style="color:red"><p></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ searchterm }}</h5>
+      </div>
+    </div>
+  </div>
+<br>
+<br>
+<div class="row mt-4 p-1 rounded">
+              {% load static %}
+          <div class="col text-center">
+          <img src="{% static 'images/pathogenesis.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if pathogenesis %}
+            <a href="/nafldkb/pathogenesis?searchterm={{ searchterm }}"><h3>{{ pathogenesis }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+          <span class="text-muted">Pathogenesis</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Therapeutic strategies.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if Therapy_strategies %}
+            <a href="/nafldkb/strategies?searchterm={{ searchterm }}"><h3>{{ Therapy_strategies }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+          <span class="text-muted">Therapeutic Strategies</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Targets.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {% if Targets %}
+            <a href="/nafldkb/targets?searchterm={{ searchterm }}"><h3>{{ Targets }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+              <span class="text-muted">Therapeutic Targets</span>
+          </div>
+        <div class="col text-center">
+          <img src="{% static 'images/drugs.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if Drugs %}
+            <a href="/nafldkb/drugs?searchterm={{ searchterm }}"><h3>{{ Drugs }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+              <span class="text-muted">Investigational Drugs</span>
+          </div>
+          <div class="col text-center">
+          <img src="{% static 'images/Clinical trials.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if Clinical_trials %}
+            <a href="/nafldkb/trials?searchterm={{ searchterm }}"><h3>{{ Clinical_trials }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+              <span class="text-muted">Clinical Trials</span>
+          </div>
+        <div class="col text-center">
+  <img src="{% static 'images/research articles.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if Research_articles %}
+            <a href="/nafldkb/articles?searchterm={{ searchterm }}"><h3>{{ Research_articles }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+      <span class="text-muted">Research Articles</span>
+  </div>
+</div>
+<div class="row mt-4 p-1 rounded">
+    <div class="col text-center">
+          <img src="{% static 'images/models.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if models %}
+            <a href="/nafldkb/models?searchterm={{ searchterm }}"><h3>{{ models }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+          <span class="text-muted"><I>In vitro</I> & <I>In vivo</I> Models</span>
+          </div>
+  <div class="col text-center">
+  <img src="{% static 'images/Candidates.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if Candidates %}
+            <a href="/nafldkb/candidates?searchterm={{ searchterm }}"><h3>{{ Candidates }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+      <span class="text-muted">Repositioning Candidates</span>
+  </div>
+  <div class="col text-center">
+  <img src="{% static 'images/Compounds.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if compounds %}
+            <a href="/nafldkb/compounds?searchterm={{ searchterm }}"><h3>{{ compounds }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+  <span class="text-muted">Bioactive Compounds</span>
+  </div>
+  <div class="col text-center">
+  <img src="{% static 'images/cmap.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if cmap %}
+            <a href="/nafldkb/cmap?searchterm={{ searchterm }}"><h3>{{ cmap }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+      <span class="text-muted">CMap Candidates</span>
+  </div>
+  <div class="col text-center">
+  <img src="{% static 'images/natural products.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if products %}
+            <a href="/nafldkb/products?searchterm={{ searchterm }}"><h3>{{ products }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+  <span class="text-muted">Natural Products</span>
+  </div>
+    <div class="col text-center">
+          <img src="{% static 'images/Associated diseases.png' %}" width="80" height="80" class="rounded-circle" alt="Cinque Terre">
+        {%if Associated_diseases %}
+            <a href="/nafldkb/diseases?searchterm={{ searchterm }}"><h3>{{ Associated_diseases }}</h3></a>
+        {% else %}
+            <h3>0</h3>
+        {% endif %}
+              <span class="text-muted">Associated Diseases</span>
+          </div>
+  </div>
+<br>
+<hr>
+<br>

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% include "header.html" %}
+  </head>
+  <body>
+      {% include "navbar.html" %}
+    <div class="container-fluid">
+          <main class="container-fluid">
+            <div class="mt-3 p-3">
+        </div>
+            <div class="mt-4 p-3 bg-light rounded">
+              <div class="panel-body">
+                <div class="col-md-12">
+                  <h4 class="text-center">Therapeutic Strategies</h4>
+                  <p>Therapeutic strategies for NAFLD are manually extracted from research articles. For each strategy, reference researches are provided, and related therapeutic targets, drugs and repositioning candidates in NAFLDkb are presented with knowledge graphs.</p>
+                  <div class="row" style="height:300px">
+                    <div class="col-md-12" id="timeline">timeline</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 p-3 bg-light rounded">
+              <div class="panel-body">
+                <div class="col-md-12">
+                {%if searchterm %}
+                          <h4>Search for: </h4>
+                          <h5 style="color:red"><p></p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ searchterm }}</h5>
+                {% endif %}
+                  <div><strong>{{ num }}</strong> records.</div>
+                </div>
+              </div>
+            </div>
+            <div class="dataTables_scroll">
+              <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; padding-right: 0px;">
+                  <table class="table table-condensed table-hover table-striped table-bordered dataTable no-footer" style="margin-left: 0px;" role="grid" >
+                    <thead>
+                      <tr role="row">
+                        <th class="sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Strategy ID</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Strategy</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Other Terms</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Related Targets</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle">Related Drugs</th>
+                        <th class="color1 sorting_disabled text-center" rowspan="1" colspan="1" style="vertical-align: middle"></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for row in page_list %}
+                        <tr role="row" class="odd text-center">
+                          <td style="vertical-align: middle"><a href="/nafldkb/strategy_details?id={{ row.0 }}">S{{ row.0|stringformat:"02i" }}</a></td>
+                          <td style="vertical-align: middle">{{ row.1 }}</td>
+                          <td style="vertical-align: middle">
+                            {% if row.2 is None %}
+                            --
+                            {% else %}
+                              {{ row.2 }}
+                            {% endif %}
+                          </td>
+                          <td style="vertical-align: middle">
+                            {% if row.3 is None %}
+                            --
+                            {% else %}
+                              {{ row.3 }}
+                            {% endif %}
+                          </td>
+                          <td style="vertical-align: middle">
+                            {% if row.4 is None %}
+                            --
+                            {% else %}
+                              {{ row.4 }}
+                            {% endif %}
+                          </td>
+                          <td style="vertical-align: middle"><a href="/nafldkb/strategy_details?id={{ row.0 }}">Details</a></td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+
+                  <nav aria-label="...">
+                    <ul class="pagination justify-content-center">
+                      {% if second_list_obj.has_previous %}
+                      <li class="page-item"><a class="page-link" href="?searchterm={{ searchterm }}&page={{ second_list_obj.previous_page_number }}">Previous</a></li>
+                      {% else %}
+                      <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                      {% endif %}
+                      
+                      {% if second_list_obj.number > 2 %}
+                      <li class="page-item"><a class="page-link" href="?searchterm={{ searchterm }}&page={{ second_list_obj.number|add:-2 }}">{{ second_list_obj.number|add:-2 }} </a></li>
+                      {% endif %}
+                      {% if second_list_obj.number > 1 %}
+                      <li class="page-item"><a class="page-link" href="?searchterm={{ searchterm }}&page={{ second_list_obj.number|add:-1 }}">{{ second_list_obj.number|add:-1 }} </a></li>
+                      {% endif %}
+                      <li class="page-item"><a class="page-link" href="?searchterm={{ searchterm }}&page={{ second_list_obj.number }}">{{ second_list_obj.number }} </a></li>
+                      {% if second_list_obj.number < p.num_pages %}
+                      <li class="page-item"><a class="page-link" href="?searchterm={{ searchterm }}&page={{ second_list_obj.number|add:1 }}">{{ second_list_obj.number|add:1 }} </a></li>
+                      {% endif %}
+                      {% if second_list_obj.number < p.num_pages|add:-1 %}
+                      <li class="page-item"><a class="page-link" href="?searchterm={{ searchterm }}&page={{ second_list_obj.number|add:2 }}">{{ second_list_obj.number|add:2 }} </a></li>
+                      {% endif %}
+
+                      {% if second_list_obj.has_next %}
+                      <li class="page-item"><a class="page-link" href="?searchterm={{ searchterm }}&page={{ second_list_obj.next_page_number }}">Next</a></li>
+                      {% else %}
+                      <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                      {% endif %}
+                    </ul>
+                  </nav>
+
+                </div>
+              </div>
+            </div>
+          </main>
+    </div>
+  {% include "footer.html" %}
+  </body>
+  <script>
+   Highcharts.chart('timeline', {
+      chart: {
+          type: 'timeline'
+      },
+      
+      xAxis: {
+          visible: false
+      },
+      yAxis: {
+          visible: false
+      },
+      title: {text: ''},
+      colors: ['#c1e4e9','#a2d7dd','#a0d8ef','#89c3eb','#2ca9e1','#38a1db','#0095d9','#0094c8','#2792c3','#007bbb','#4c6cb3','#3e62ad','#1e50a2','#19448e','#164a84','#274a78','#2a4073',],
+      series: [{
+          data: [{
+              name: 'Lifestyle measures',
+              label: '1990',
+              description: 'Gastroenterology (PMID: 2210247)'
+          }, {
+              name: 'Anti-inflammatory',
+              label: '1996',
+              description: 'Hepatology (PMID: 8675165)'
+          }, {
+              name: 'Anti-oxidative stress',
+              label: '2000',
+              description: 'J Pediatr (PMID: 10839868)'
+          }, {
+            name: 'Improve insulin resistance',
+            label: '2001',
+            description: 'Lancet (PMID: 11567710)'
+          }, {
+              name: 'Liver transplantation',
+              label: '2002',
+              description: 'J Gastroenterol Hepatol (PMID: 12000605)'
+          }, {
+              name: 'Enhance lipid metabolism',
+              label: '2004',
+              description: 'Indian J Gastroenterol (PMID: 15333967)'
+          }, {
+              name: 'Bariatric surgery',
+              label: '2004',
+              description: 'Semin Liver Dis (PMID: 15605305)'
+          }, {
+              name: 'Anti-hypertensive',
+              label: '2004',
+              description: 'Hepatology (PMID: 15382153)'
+          }, {
+              name: 'Regulating intestinal flora',
+              label: '2005',
+              description: 'J Clin Gastroenterol (PMID: 15942443)'
+          }, {
+              name: 'Anti-lipogenesis',
+              label: '2006',
+              description: 'J Clin Invest (PMID: 16485039)'
+          }, {
+              name: 'Anti-platelet aggregation',
+              label: '2008',
+              description: 'Gut (PMID: 18596193)'
+          }, {
+              name: 'Immunotherapy',
+              label: '2010',
+              description: 'J Hepatol (PMID: 20557969)'
+          }, {
+              name: 'Anti-apoptosis',
+              label: '2011',
+              description: 'J Lipid Res (PMID: 21633093)'
+          }, {
+              name: 'Genetic therapy',
+              label: '2011',
+              description: 'Int J Obes (Lond) (PMID: 21157426)'
+          }, {
+              name: 'Cell therapy',
+              label: '2012',
+              description: 'Exp Cell Res (PMID: 22108588)'
+          }, {
+              name: 'Anti-fibrosis',
+              label: '2016',
+              description: 'Aliment Pharmacol Ther (PMID: 27061197)'
+            }, {
+              name: 'Digital therapeutics',
+              label: '2018',
+              description: 'J Hepatol (PMID: 30290973)'
+          }]
+      }]
+  });
+  </script>
+</html>
